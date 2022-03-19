@@ -10,4 +10,9 @@ export const VerticalDivider = styled.div`
   background: #171717;
   height: 100%;
   width: 1px;
+
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
 `;

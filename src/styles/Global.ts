@@ -1,9 +1,10 @@
 import { createGlobalStyle } from "styled-components";
+import { COLORS } from "../constants";
 
 export default createGlobalStyle`
 
 :root {
-  --clr-neutral-50: #171717;
+  --clr-background: ${COLORS.primary[0]};
 }
 
 html,
@@ -111,6 +112,8 @@ section {
 }
 body {
   line-height: 1;
+  background: var(--clr-background);
+  overscroll-behavior: none
 }
 ol,
 ul {

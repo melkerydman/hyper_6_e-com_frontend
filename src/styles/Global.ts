@@ -4,6 +4,8 @@ import { COLORS } from "../constants";
 export default createGlobalStyle`
 
 :root {
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
+  font-family: 'Inter', sans-serif;;
   --clr-background: ${COLORS.primary[0]};
 }
 

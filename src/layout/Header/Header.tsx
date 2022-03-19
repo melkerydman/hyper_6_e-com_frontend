@@ -12,16 +12,13 @@ const Header = () => {
   return (
     <StyledHeader>
       <Nav>
-        <Logo href="/">Logo</Logo>
+        <Logo href="/">Reverie — Daydream</Logo>
         <Menu>
           <MenuItem>
-            <MenuLink>Link One</MenuLink>
+            <MenuLink>Shop</MenuLink>
           </MenuItem>
           <MenuItem>
-            <MenuLink>Link One</MenuLink>
-          </MenuItem>
-          <MenuItem>
-            <MenuLink>Link One</MenuLink>
+            <MenuLink>Story</MenuLink>
           </MenuItem>
         </Menu>
         <CheckoutButton>Bag (0)</CheckoutButton>

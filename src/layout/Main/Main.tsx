@@ -1,13 +1,6 @@
-import { Main as StyledMain, Left, Right } from "./Main.elements";
-import { VerticalDivider } from "../../components/index";
-const Main = () => {
-  return (
-    <StyledMain>
-      <Left>Left</Left>
-      <VerticalDivider />
-      <Right>Right</Right>
-    </StyledMain>
-  );
+import { Main as StyledMain } from "./Main.elements";
+const Main = (props: any) => {
+  return <StyledMain>{props.children}</StyledMain>;
 };
 
 export default Main;

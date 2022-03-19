@@ -18,6 +18,8 @@ export const Nav = styled.nav`
   /* Display */
   display: flex;
 
+  position: relative;
+
   /* * Box model */
   width: 100%;
   justify-content: space-between;
@@ -31,6 +33,11 @@ export const Logo = styled.a`
 export const Menu = styled.ul`
   display: flex;
   gap: 1rem;
+
+  position: absolute;
+  left: 50%;
+
+  transform: translateX(-50%);
 `;
 
 export const MenuItem = styled.li``;

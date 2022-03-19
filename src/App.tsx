@@ -1,22 +1,25 @@
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./styles/Global";
 import { HorizontalDivider } from "./components/index";
-import { Header, Main, Footer } from "./layout/index";
+import { Header, Footer, Main } from "./layout/index";
+import { Product } from "./pages/index";
 
 import { COLORS } from "./constants";
 
 const App = () => {
   return (
-    <ThemeProvider theme={{ colors: COLORS }}>
-      <div className="App">
+    <div className="App">
+      <ThemeProvider theme={{ colors: COLORS }}>
         <GlobalStyle />
         <Header />
         <HorizontalDivider />
-        <Main />
+        <Main>
+          <Product />
+        </Main>
         <HorizontalDivider />
         <Footer />
-      </div>
-    </ThemeProvider>
+      </ThemeProvider>
+    </div>
   );
 };
 

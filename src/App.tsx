@@ -13,9 +13,7 @@ const App = () => {
         <GlobalStyle />
         <Header />
         <HorizontalDivider />
-        <Main>
-          <Product />
-        </Main>
+        <Product />
         <HorizontalDivider />
         <Footer />
       </ThemeProvider>

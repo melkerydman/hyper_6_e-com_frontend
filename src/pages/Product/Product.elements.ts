@@ -30,3 +30,5 @@ export const Detail = styled.div`
 `;
 
 export const ProductAction = styled.div``;
+
+export const MoreProducts = styled.div``;

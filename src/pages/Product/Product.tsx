@@ -22,8 +22,8 @@ const Product = () => {
         <Grid>
           <ProductInfo>
             <ProductHeader>
-              <h2>Nmae of Piece</h2>
-              <h2>from Exhibition X</h2>
+              <h2>Name of Piece</h2>
+              <h2>from Exhibition</h2>
               <div>£100</div>
             </ProductHeader>
             <ProductDetails>
@@ -39,17 +39,12 @@ const Product = () => {
                 <div>Edition:</div>
                 <div>Limited of 10</div>
               </Detail>
-              <Detail>
+              <Detail top>
                 <div>Details:</div>
                 <div>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
-                    voluptatem placeat pariatur. Ducimus, odit.
-                  </p>
-                  <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Dolore, sapiente.
-                  </p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
+                  voluptatem placeat pariatur. Ducimus, odit. Lorem, ipsum dolor
+                  sit amet consectetur adipisicing elit. Dolore, sapiente.
                 </div>
               </Detail>
               <HorizontalDivider />
@@ -58,8 +53,18 @@ const Product = () => {
               <Button>Add to cart</Button>
             </ProductAction>
           </ProductInfo>
-          <VerticalDivider />
-          <ProductImages />
+          <VerticalDivider center />
+          <ProductImages>
+            <img src="/images/hunros-1.jpeg" alt="" />
+            <img src="/images/hunros-2.jpeg" alt="" />
+            <img src="/images/hunros-3.jpeg" alt="" />
+            <img src="/images/hunros-4.jpeg" alt="" />
+            <img src="/images/hunros-5.jpeg" alt="" />
+            {/* <img src="../../../public/images/hunros-1.jpeg" alt="" />
+            <img src="../../../public/images/hunros-1.jpeg" alt="" />
+            <img src="../../../public/images/hunros-1.jpeg" alt="" />
+            <img src="../../../public/images/hunros-1.jpeg" alt="" /> */}
+          </ProductImages>
         </Grid>
       </div>
       <HorizontalDivider />

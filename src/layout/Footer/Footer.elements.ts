@@ -9,11 +9,6 @@ export const Footer = styled.footer`
   height: 150px;
 
   position: relative;
-
-  VerticalDivider {
-    background: red;
-    width: 50px;
-  }
 `;
 
 export const FooterContent = styled.div`

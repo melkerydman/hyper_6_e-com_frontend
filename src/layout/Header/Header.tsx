@@ -8,6 +8,8 @@ import {
   CheckoutButton,
 } from "./Header.elements";
 
+import { HorizontalDivider } from "../../components/index";
+
 const Header = () => {
   return (
     <StyledHeader>
@@ -23,6 +25,7 @@ const Header = () => {
         </Menu>
         <CheckoutButton>Bag (0)</CheckoutButton>
       </Nav>
+      <HorizontalDivider bottom />
     </StyledHeader>
   );
 };

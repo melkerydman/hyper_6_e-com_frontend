@@ -1,14 +1,17 @@
-import { VerticalDivider } from "../../components/index";
+import { VerticalDivider, HorizontalDivider } from "../../components/index";
 import { Footer as StyledFooter, FooterContent } from "./Footer.elements";
 
 const Footer = () => {
   return (
-    <StyledFooter>
-      <VerticalDivider />
-      <FooterContent>
-        <p>Company Name</p>
-      </FooterContent>
-    </StyledFooter>
+    <>
+      <StyledFooter>
+        <HorizontalDivider top />
+        <VerticalDivider center />
+        <FooterContent>
+          <p>Company Name</p>
+        </FooterContent>
+      </StyledFooter>
+    </>
   );
 };
 

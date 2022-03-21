@@ -1,1 +1,1 @@
-export { Grid } from "./Grid/Grid.styled";
+export { Grid, AppGrid } from "./Grid/Grid.styled";

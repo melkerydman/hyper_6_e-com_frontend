@@ -12,6 +12,8 @@ export const Header = styled.header`
   padding-right: 1.5rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
+
+  position: relative;
 `;
 
 export const Nav = styled.nav`

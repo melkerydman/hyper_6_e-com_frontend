@@ -5,15 +5,19 @@
 import styled from "styled-components";
 
 export const Header = styled.header`
+  position: sticky;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1;
+
   width: 100%;
-  /* background: ${({ theme }) =>
-    theme.colors.neutral.w300 ? theme.colors.neutral.w300 : "#efefef"}; */
+  background: ${({ theme }) => theme.colors.primary};
+
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
-
-  position: relative;
 `;
 
 export const Nav = styled.nav`

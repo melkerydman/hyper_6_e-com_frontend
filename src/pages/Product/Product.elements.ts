@@ -13,7 +13,8 @@ export const ProductInfo = styled.div`
   padding-right: 140px;
 `;
 export const ProductImages = styled.div`
-  height: 100%;
+  max-height: 65vh;
+  overflow: scroll;
 `;
 
 export const ProductHeader = styled.header`
@@ -46,4 +47,6 @@ export const Detail = styled.div<IDetail>`
 
 export const ProductAction = styled.div``;
 
-export const MoreProducts = styled.div``;
+export const MoreProducts = styled.div`
+  height: 200px;
+`;

@@ -4,7 +4,7 @@ import {
   Button,
 } from "../../components/index";
 import { Main } from "../../layout/index";
-import { Grid } from "../../utils/index";
+import { Grid, Wrapper } from "../../utils/index";
 import {
   ProductInfo,
   ProductImages,
@@ -18,7 +18,7 @@ import {
 const Product = () => {
   return (
     <Main>
-      <div>
+      <Wrapper>
         <Grid>
           <ProductInfo>
             <ProductHeader>
@@ -60,14 +60,10 @@ const Product = () => {
             <img src="/images/hunros-3.jpeg" alt="" />
             <img src="/images/hunros-4.jpeg" alt="" />
             <img src="/images/hunros-5.jpeg" alt="" />
-            {/* <img src="../../../public/images/hunros-1.jpeg" alt="" />
-            <img src="../../../public/images/hunros-1.jpeg" alt="" />
-            <img src="../../../public/images/hunros-1.jpeg" alt="" />
-            <img src="../../../public/images/hunros-1.jpeg" alt="" /> */}
           </ProductImages>
         </Grid>
-      </div>
-      <HorizontalDivider />
+        <HorizontalDivider />
+      </Wrapper>
       <MoreProducts>More products</MoreProducts>
     </Main>
   );

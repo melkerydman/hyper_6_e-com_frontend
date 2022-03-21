@@ -11,7 +11,8 @@ import {
   ProductHeader,
   ProductDetails,
   Detail,
-  ProductAction,
+  Quantity,
+  Action,
   MoreProducts,
 } from "./Product.elements";
 
@@ -49,9 +50,21 @@ const Product = () => {
               </Detail>
               <HorizontalDivider />
             </ProductDetails>
-            <ProductAction>
+            <Action>
+              <Quantity>
+                <div>-</div>
+                <input
+                  type="number"
+                  id="quantity"
+                  name="quantity"
+                  value={1}
+                  min="1"
+                  max="5"
+                ></input>
+                <div>+</div>
+              </Quantity>
               <Button>Add to cart</Button>
-            </ProductAction>
+            </Action>
           </ProductInfo>
           <VerticalDivider center />
           <ProductImages>

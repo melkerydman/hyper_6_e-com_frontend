@@ -30,7 +30,6 @@ export const VerticalDivider = styled.div<IVertical>`
   top: 0;
   left: ${(props) => (props.left && "0") || (props.center && "50%")};
   right: ${(props) => props.right && "0"};
-  transform: ${(props) => props.center && "translateX(-50%)"};
 
-  /* transform: translateX(-50%); */
+  transform: ${(props) => props.center && "translateX(-50%)"};
 `;

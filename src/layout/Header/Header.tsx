@@ -10,7 +10,7 @@ import {
 
 import { HorizontalDivider } from "../../components/index";
 
-const Header = () => {
+const Header = (props: any) => {
   return (
     <StyledHeader>
       <Nav>
@@ -23,7 +23,13 @@ const Header = () => {
             <MenuLink>Story</MenuLink>
           </MenuItem>
         </Menu>
-        <CheckoutButton>Bag (0)</CheckoutButton>
+        <CheckoutButton
+          onClick={() => {
+            props.handleCartOpen();
+          }}
+        >
+          Bag (0)
+        </CheckoutButton>
       </Nav>
       <HorizontalDivider bottom />
     </StyledHeader>

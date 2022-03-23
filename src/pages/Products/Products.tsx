@@ -3,24 +3,23 @@ import { ProductList, ProductListItem } from "./Products.elements";
 
 interface IProps {
   products: IProduct[] | undefined;
-  addItemToCart: () => void;
+  // addItemToCart: () => void;
+  addItemToCart: (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
 }
 
 const Products: React.FC<IProps> = ({
   products,
   addItemToCart,
 }): JSX.Element => {
-  console.log("Products: ", products);
-
   return (
     <div>
       <ProductList>
         {products
           ? products.map((product) => (
               <ProductListItem
-                onClick={() => {
-                  // Add to cart
-                }}
+                data-id={product.id}
+                key={product.id}
+                onClick={addItemToCart}
               >
                 <img
                   src={product.url}

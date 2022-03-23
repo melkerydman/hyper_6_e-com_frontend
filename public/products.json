@@ -36,7 +36,7 @@
     "details": "Some info text here"
   },
   {
-    "id": 2,
+    "id": 4,
     "title": "Exhibition Print 2",
     "exhibition": "Coruscant",
     "artist": "Leia Skywalker",
@@ -48,7 +48,7 @@
     "details": "Some info text here"
   },
   {
-    "id": 3,
+    "id": 5,
     "title": "Exhibition Print 3",
     "exhibition": "Hoth",
     "artist": "Han Solo",
@@ -60,7 +60,7 @@
     "details": "Some info text here"
   },
   {
-    "id": 2,
+    "id": 6,
     "title": "Exhibition Print 2",
     "exhibition": "Coruscant",
     "artist": "Leia Skywalker",
@@ -72,7 +72,7 @@
     "details": "Some info text here"
   },
   {
-    "id": 3,
+    "id": 7,
     "title": "Exhibition Print 3",
     "exhibition": "Hoth",
     "artist": "Han Solo",
@@ -84,7 +84,7 @@
     "details": "Some info text here"
   },
   {
-    "id": 2,
+    "id": 8,
     "title": "Exhibition Print 2",
     "exhibition": "Coruscant",
     "artist": "Leia Skywalker",
@@ -96,7 +96,7 @@
     "details": "Some info text here"
   },
   {
-    "id": 3,
+    "id": 9,
     "title": "Exhibition Print 3",
     "exhibition": "Hoth",
     "artist": "Han Solo",
@@ -108,7 +108,7 @@
     "details": "Some info text here"
   },
   {
-    "id": 2,
+    "id": 10,
     "title": "Exhibition Print 2",
     "exhibition": "Coruscant",
     "artist": "Leia Skywalker",
@@ -120,7 +120,7 @@
     "details": "Some info text here"
   },
   {
-    "id": 3,
+    "id": 11,
     "title": "Exhibition Print 3",
     "exhibition": "Hoth",
     "artist": "Han Solo",
@@ -132,7 +132,7 @@
     "details": "Some info text here"
   },
   {
-    "id": 2,
+    "id": 12,
     "title": "Exhibition Print 2",
     "exhibition": "Coruscant",
     "artist": "Leia Skywalker",
@@ -144,7 +144,7 @@
     "details": "Some info text here"
   },
   {
-    "id": 3,
+    "id": 13,
     "title": "Exhibition Print 3",
     "exhibition": "Hoth",
     "artist": "Han Solo",

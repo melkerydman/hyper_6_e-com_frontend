@@ -17,6 +17,7 @@ export interface ICart {
   items: IProduct[] | [];
 }
 export interface IProduct {
+  id: number;
   title: string;
   artist: string;
   url: string;
@@ -63,10 +64,18 @@ const App = () => {
     setCart((prev) => ({ ...cart, isShowing: !prev.isShowing }));
   };
 
-  const addItemToCart = () => {
-    setCart((prev) => ({
+  // const addItemToCart = () => {
+  //   setCart((prev) => ({
+  //     ...cart,
+  //     amountOfItems: prev.amountOfItems ? prev.amountOfItems + 1 : 1,
+  //   }));
+  // };
+  const addItemToCart = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+    console.log(e.currentTarget.dataset.id);
+    setCart(() => ({
       ...cart,
-      amountOfItems: prev.amountOfItems ? prev.amountOfItems + 1 : 1,
+      // items: items.push(e)
+      // products.find(id === e.target.id)
     }));
   };
 
@@ -82,10 +91,10 @@ const App = () => {
           <Cart isShowing={cart.isShowing} handleOpenCart={handleOpenCart} />
           <Header cart={cart} handleOpenCart={handleOpenCart} />
           <Routes>
-            <Route
+            {/* <Route
               path="/product"
               element={<Product addItemToCart={addItemToCart} />}
-            />
+            /> */}
             <Route
               path="/products"
               element={

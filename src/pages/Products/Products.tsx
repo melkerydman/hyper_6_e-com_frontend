@@ -1,11 +1,15 @@
-import { IState as Props } from "../../App";
+import { IProduct } from "../../App";
 import { ProductList, ProductListItem } from "./Products.elements";
 
 interface IProps {
-  products: Props["product"][] | undefined;
+  products: IProduct[] | undefined;
+  addItemToCart: () => void;
 }
 
-const Products: React.FC<IProps> = ({ products }): JSX.Element => {
+const Products: React.FC<IProps> = ({
+  products,
+  addItemToCart,
+}): JSX.Element => {
   console.log("Products: ", products);
 
   return (
@@ -13,7 +17,11 @@ const Products: React.FC<IProps> = ({ products }): JSX.Element => {
       <ProductList>
         {products
           ? products.map((product) => (
-              <ProductListItem>
+              <ProductListItem
+                onClick={() => {
+                  // Add to cart
+                }}
+              >
                 <img
                   src={product.url}
                   alt={`${product.title} by ${product.artist}`}

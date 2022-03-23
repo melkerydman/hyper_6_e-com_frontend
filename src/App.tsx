@@ -11,28 +11,42 @@ import { Products, Product } from "./pages/index";
 import { COLORS } from "./constants";
 
 // Interface
-export interface IState {
-  cart: {
-    isShowing: boolean;
-    amountOfItems?: number;
-    // items?: {}[];
-  };
-  product: {
-    title: string;
-    artist: string;
-    url: string;
-    price: number;
-    year: number;
-    dimensions: string;
-    edition: string;
-    details: string;
-  };
+export interface ICart {
+  isShowing: boolean;
+  amountOfItems?: number;
+  items: IProduct[] | [];
 }
+export interface IProduct {
+  title: string;
+  artist: string;
+  url: string;
+  price: number;
+  year: number;
+  dimensions: string;
+  edition: string;
+}
+// export interface IState {
+//   cart: {
+//     isShowing: boolean;
+//     amountOfItems?: number;
+//     // items?: product[];
+//   };
+//   product: {
+//     title: string;
+//     artist: string;
+//     url: string;
+//     price: number;
+//     year: number;
+//     dimensions: string;
+//     edition: string;
+//     details: string;
+//   };
+// }
 
 // Export and put types here
 const App = () => {
-  const [cart, setCart] = useState<IState["cart"]>({ isShowing: false });
-  const [products, setProducts] = useState<IState["product"][]>();
+  const [cart, setCart] = useState<ICart>({ isShowing: false, items: [] });
+  const [products, setProducts] = useState<IProduct[]>();
 
   const handleFetchProducts = async () => {
     const response = await fetch("products.json", {
@@ -65,7 +79,7 @@ const App = () => {
       <ThemeProvider theme={{ colors: COLORS }}>
         <GlobalStyle />
         <AppGrid>
-          <Cart cart={cart} handleOpenCart={handleOpenCart} />
+          <Cart isShowing={cart.isShowing} handleOpenCart={handleOpenCart} />
           <Header cart={cart} handleOpenCart={handleOpenCart} />
           <Routes>
             <Route
@@ -74,7 +88,9 @@ const App = () => {
             />
             <Route
               path="/products"
-              element={<Products products={products} />}
+              element={
+                <Products products={products} addItemToCart={addItemToCart} />
+              }
             />
           </Routes>
           <Footer />

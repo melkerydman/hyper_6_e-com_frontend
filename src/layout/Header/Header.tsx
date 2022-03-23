@@ -8,10 +8,10 @@ import {
   CheckoutButton,
 } from "./Header.elements";
 import { HorizontalDivider } from "../../components/index";
-import { IState as Props } from "../../App";
+import { ICart } from "../../App";
 
 interface IProps {
-  cart: Props["cart"];
+  cart: ICart;
   handleOpenCart: () => void;
 }
 

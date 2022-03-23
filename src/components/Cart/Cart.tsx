@@ -1,14 +1,15 @@
 import { StyledCart } from "./Cart.styled";
 import { VerticalDivider } from "../Divider/Divider.styled";
+import { IState as Props } from "../../App";
 
 interface IProps {
-  isShowing: boolean;
+  cart: Props["cart"];
   handleOpenCart: () => void;
 }
 
-const Cart: React.FC<IProps> = ({ isShowing, handleOpenCart }): JSX.Element => {
+const Cart: React.FC<IProps> = ({ cart, handleOpenCart }): JSX.Element => {
   return (
-    <StyledCart isShowing={isShowing}>
+    <StyledCart isShowing={cart.isShowing}>
       <VerticalDivider />
       <div
         onClick={() => {

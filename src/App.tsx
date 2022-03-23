@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
 import { productsData } from "./data";
 
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./styles/Global";
 import { Cart } from "./components/index";
 import { Header, Footer } from "./layout/index";
-import { Product } from "./pages/index";
 import { AppGrid } from "./utils/index";
+import { Products, Product } from "./pages/index";
 
 import { COLORS } from "./constants";
 
@@ -33,8 +34,8 @@ const App = () => {
   const [cart, setCart] = useState<IState["cart"]>({ isShowing: false });
   const [products, setProducts] = useState<IState["product"][]>();
 
-  const handleFetchProducts = () => {
-    setProducts(productsData);
+  const handleFetchProducts = async () => {
+    await setProducts(productsData);
     console.log(products);
   };
 
@@ -51,16 +52,23 @@ const App = () => {
 
   useEffect(() => {
     handleFetchProducts();
-  });
+    console.log(products);
+  }, []);
 
   return (
     <div className="App">
       <ThemeProvider theme={{ colors: COLORS }}>
         <GlobalStyle />
         <AppGrid>
-          <Cart isShowing={cart.isShowing} handleOpenCart={handleOpenCart} />
+          <Cart cart={cart} handleOpenCart={handleOpenCart} />
           <Header cart={cart} handleOpenCart={handleOpenCart} />
-          <Product addItemToCart={addItemToCart} />
+          <Routes>
+            <Route
+              path="/product"
+              element={<Product addItemToCart={addItemToCart} />}
+            />
+            <Route path="/products" element={<Products />} />
+          </Routes>
           <Footer />
         </AppGrid>
       </ThemeProvider>

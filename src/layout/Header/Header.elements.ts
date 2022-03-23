@@ -4,10 +4,6 @@
 
 import styled from "styled-components";
 
-interface IHi {
-  visible?: boolean;
-}
-
 export const Header = styled.header`
   position: sticky;
   left: 0;

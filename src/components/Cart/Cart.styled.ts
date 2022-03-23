@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-interface IHi {
-  visible?: boolean;
-}
+type CartType = {
+  isShowing?: boolean;
+};
 
-export const StyledCart = styled.section<IHi>`
+export const StyledCart = styled.section<CartType>`
   position: fixed;
   z-index: 99;
   top: 0;
@@ -13,7 +13,7 @@ export const StyledCart = styled.section<IHi>`
   width: calc(50% + 1px);
   background: red;
 
-  transform: ${({ visible }) =>
-    visible ? "translateX(0%)" : "translateX(100%)"};
+  transform: ${({ isShowing }) =>
+    isShowing ? "translateX(0%)" : "translateX(100%)"};
   transition: all 0.3s ease-in;
 `;

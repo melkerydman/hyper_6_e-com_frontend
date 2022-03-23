@@ -10,7 +10,15 @@ import {
 
 import { HorizontalDivider } from "../../components/index";
 
-const Header = (props: any) => {
+interface IProps {
+  amountOfItems: number;
+  handleCartOpen: () => void;
+}
+
+const Header: React.FC<IProps> = ({
+  amountOfItems,
+  handleCartOpen,
+}): JSX.Element => {
   return (
     <StyledHeader>
       <Nav>
@@ -25,10 +33,10 @@ const Header = (props: any) => {
         </Menu>
         <CheckoutButton
           onClick={() => {
-            props.handleCartOpen();
+            handleCartOpen();
           }}
         >
-          Bag (0)
+          Bag ({amountOfItems})
         </CheckoutButton>
       </Nav>
       <HorizontalDivider bottom />

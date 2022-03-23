@@ -16,7 +16,11 @@ import {
   MoreProducts,
 } from "./Product.elements";
 
-const Product = () => {
+interface IProps {
+  addItemToCart: () => void;
+}
+
+const Product: React.FC<IProps> = ({ addItemToCart }): JSX.Element => {
   return (
     <Main>
       <Wrapper>
@@ -63,7 +67,7 @@ const Product = () => {
                 ></input>
                 <div>+</div>
               </Quantity>
-              <Button>Add to cart</Button>
+              <Button onClick={() => addItemToCart()}>Add to cart</Button>
             </Action>
           </ProductInfo>
           <VerticalDivider center />

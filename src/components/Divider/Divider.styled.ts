@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
-interface IHorizontal {
+type HorizontalType = {
   top?: boolean;
   bottom?: boolean;
-}
-interface IVertical {
+};
+type VerticalType = {
   left?: boolean;
   center?: boolean;
   right?: boolean;
-}
+};
 
-export const HorizontalDivider = styled.div<IHorizontal>`
+export const HorizontalDivider = styled.div<HorizontalType>`
   left: 0;
   bottom: ${({ bottom }) => (bottom ? "0" : "")};
   top: ${({ top }) => (top ? "0" : "")};
@@ -21,7 +21,7 @@ export const HorizontalDivider = styled.div<IHorizontal>`
   background: #171717;
 `;
 
-export const VerticalDivider = styled.div<IVertical>`
+export const VerticalDivider = styled.div<VerticalType>`
   background: #171717;
   height: 100%;
   width: 1px;

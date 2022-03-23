@@ -20,6 +20,7 @@ export interface IState {
   product: {
     title: string;
     artist: string;
+    url: string;
     price: number;
     year: number;
     dimensions: string;
@@ -33,17 +34,15 @@ const App = () => {
   const [cart, setCart] = useState<IState["cart"]>({ isShowing: false });
   const [products, setProducts] = useState<IState["product"][]>();
 
-  const handleFetchProducts = () => {
-    fetch("products.json", {
+  const handleFetchProducts = async () => {
+    const response = await fetch("products.json", {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setProducts(data);
-      });
+    });
+    const products = await response.json();
+    setProducts(products);
   };
 
   const handleOpenCart = () => {

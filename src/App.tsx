@@ -13,8 +13,8 @@ import { COLORS } from "./constants";
 // Interface
 export interface ICart {
   isShowing: boolean;
-  amountOfItems?: number;
-  items: IProduct[] | [];
+  // items: any[] | [];
+  items: IProduct[];
 }
 export interface IProduct {
   id: number;
@@ -47,7 +47,7 @@ export interface IProduct {
 // Export and put types here
 const App = () => {
   const [cart, setCart] = useState<ICart>({ isShowing: false, items: [] });
-  const [products, setProducts] = useState<IProduct[]>();
+  const [products, setProducts] = useState<IProduct[]>([]);
 
   const handleFetchProducts = async () => {
     const response = await fetch("products.json", {
@@ -64,18 +64,21 @@ const App = () => {
     setCart((prev) => ({ ...cart, isShowing: !prev.isShowing }));
   };
 
-  // const addItemToCart = () => {
-  //   setCart((prev) => ({
-  //     ...cart,
-  //     amountOfItems: prev.amountOfItems ? prev.amountOfItems + 1 : 1,
-  //   }));
-  // };
   const addItemToCart = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-    console.log(e.currentTarget.dataset.id);
-    setCart(() => ({
+    if (!e.currentTarget.dataset.id) return;
+
+    const targetId = e.currentTarget.dataset.id;
+    const itemToAdd = products.find(
+      (product) => product.id === parseInt(targetId)
+    );
+
+    // Return if didn't find item
+    if (!itemToAdd) return;
+
+    // Else update cart
+    setCart((prev) => ({
       ...cart,
-      // items: items.push(e)
-      // products.find(id === e.target.id)
+      items: [...prev.items, itemToAdd],
     }));
   };
 
@@ -88,7 +91,7 @@ const App = () => {
       <ThemeProvider theme={{ colors: COLORS }}>
         <GlobalStyle />
         <AppGrid>
-          <Cart isShowing={cart.isShowing} handleOpenCart={handleOpenCart} />
+          <Cart cart={cart} handleOpenCart={handleOpenCart} />
           <Header cart={cart} handleOpenCart={handleOpenCart} />
           <Routes>
             {/* <Route

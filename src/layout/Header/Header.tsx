@@ -16,7 +16,7 @@ interface IProps {
 }
 
 const Header: React.FC<IProps> = ({
-  cart: { amountOfItems },
+  cart: { items },
   handleOpenCart,
 }): JSX.Element => {
   return (
@@ -36,7 +36,7 @@ const Header: React.FC<IProps> = ({
             handleOpenCart();
           }}
         >
-          Bag ({amountOfItems})
+          Bag ({items.length})
         </CheckoutButton>
       </Nav>
       <HorizontalDivider bottom />

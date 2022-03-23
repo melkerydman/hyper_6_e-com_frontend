@@ -4,13 +4,15 @@ import { ICart } from "../../App";
 
 interface IProps {
   // cart: ICart;
-  isShowing: ICart["isShowing"];
+  cart: ICart;
   handleOpenCart: () => void;
 }
 
-const Cart: React.FC<IProps> = ({ isShowing, handleOpenCart }): JSX.Element => {
+const Cart: React.FC<IProps> = ({ cart, handleOpenCart }): JSX.Element => {
+  const productsInCart = cart.items;
+
   return (
-    <StyledCart isShowing={isShowing}>
+    <StyledCart isShowing={cart.isShowing}>
       <VerticalDivider />
       <div
         onClick={() => {
@@ -18,6 +20,16 @@ const Cart: React.FC<IProps> = ({ isShowing, handleOpenCart }): JSX.Element => {
         }}
       >
         Close
+      </div>
+      <div>Items</div>
+      <div>
+        {productsInCart.map((product) => (
+          <div>
+            <p>{product.title}</p>
+            <p>{product.artist}</p>
+            <p>{product.price}</p>
+          </div>
+        ))}
       </div>
     </StyledCart>
   );

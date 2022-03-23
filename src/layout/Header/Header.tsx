@@ -7,17 +7,17 @@ import {
   MenuLink,
   CheckoutButton,
 } from "./Header.elements";
-
 import { HorizontalDivider } from "../../components/index";
+import { IState as Props } from "../../App";
 
 interface IProps {
-  amountOfItems: number;
-  handleCartOpen: () => void;
+  cart: Props["cart"];
+  handleOpenCart: () => void;
 }
 
 const Header: React.FC<IProps> = ({
-  amountOfItems,
-  handleCartOpen,
+  cart: { amountOfItems },
+  handleOpenCart,
 }): JSX.Element => {
   return (
     <StyledHeader>
@@ -33,7 +33,7 @@ const Header: React.FC<IProps> = ({
         </Menu>
         <CheckoutButton
           onClick={() => {
-            handleCartOpen();
+            handleOpenCart();
           }}
         >
           Bag ({amountOfItems})

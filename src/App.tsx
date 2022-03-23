@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { productsData } from "./data";
 
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./styles/Global";
@@ -13,11 +14,10 @@ import { COLORS } from "./constants";
 export interface IState {
   cart: {
     isShowing: boolean;
-    handleCartOpen?: () => void;
     amountOfItems?: number;
     // items?: {}[];
   };
-  products: {
+  product: {
     title: string;
     artist: string;
     price: number;
@@ -25,14 +25,20 @@ export interface IState {
     dimensions: string;
     edition: string;
     details: string;
-  }[];
+  };
 }
 
 // Export and put types here
 const App = () => {
   const [cart, setCart] = useState<IState["cart"]>({ isShowing: false });
+  const [products, setProducts] = useState<IState["product"][]>();
 
-  const handleCartOpen = () => {
+  const handleFetchProducts = () => {
+    setProducts(productsData);
+    console.log(products);
+  };
+
+  const handleOpenCart = () => {
     setCart((prev) => ({ ...cart, isShowing: !prev.isShowing }));
   };
 
@@ -43,16 +49,17 @@ const App = () => {
     }));
   };
 
+  useEffect(() => {
+    handleFetchProducts();
+  });
+
   return (
     <div className="App">
       <ThemeProvider theme={{ colors: COLORS }}>
         <GlobalStyle />
         <AppGrid>
-          <Cart isShowing={cart.isShowing} handleCartOpen={handleCartOpen} />
-          <Header
-            handleCartOpen={handleCartOpen}
-            amountOfItems={cart.amountOfItems ? cart.amountOfItems : 0}
-          />
+          <Cart isShowing={cart.isShowing} handleOpenCart={handleOpenCart} />
+          <Header cart={cart} handleOpenCart={handleOpenCart} />
           <Product addItemToCart={addItemToCart} />
           <Footer />
         </AppGrid>

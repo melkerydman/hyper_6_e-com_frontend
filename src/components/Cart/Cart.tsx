@@ -3,16 +3,16 @@ import { VerticalDivider } from "../Divider/Divider.styled";
 
 interface IProps {
   isShowing: boolean;
-  handleCartOpen: () => void;
+  handleOpenCart: () => void;
 }
 
-const Cart: React.FC<IProps> = ({ isShowing, handleCartOpen }): JSX.Element => {
+const Cart: React.FC<IProps> = ({ isShowing, handleOpenCart }): JSX.Element => {
   return (
     <StyledCart isShowing={isShowing}>
       <VerticalDivider />
       <div
         onClick={() => {
-          handleCartOpen();
+          handleOpenCart();
         }}
       >
         Close

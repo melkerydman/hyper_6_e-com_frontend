@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { productsData } from "./data";
 
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./styles/Global";
@@ -34,9 +33,17 @@ const App = () => {
   const [cart, setCart] = useState<IState["cart"]>({ isShowing: false });
   const [products, setProducts] = useState<IState["product"][]>();
 
-  const handleFetchProducts = async () => {
-    await setProducts(productsData);
-    console.log(products);
+  const handleFetchProducts = () => {
+    fetch("products.json", {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setProducts(data);
+      });
   };
 
   const handleOpenCart = () => {
@@ -52,7 +59,6 @@ const App = () => {
 
   useEffect(() => {
     handleFetchProducts();
-    console.log(products);
   }, []);
 
   return (
@@ -67,7 +73,10 @@ const App = () => {
               path="/product"
               element={<Product addItemToCart={addItemToCart} />}
             />
-            <Route path="/products" element={<Products />} />
+            <Route
+              path="/products"
+              element={<Products products={products} />}
+            />
           </Routes>
           <Footer />
         </AppGrid>

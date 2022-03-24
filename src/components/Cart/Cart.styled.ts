@@ -16,4 +16,9 @@ export const StyledCart = styled.section<CartType>`
   transform: ${({ isShowing }) =>
     isShowing ? "translateX(0%)" : "translateX(100%)"};
   transition: all 0.3s ease-in;
+  overflow: scroll;
 `;
+
+export const CartList = styled.ul``;
+
+export const CartListItem = styled.li``;

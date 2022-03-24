@@ -4,7 +4,8 @@ import { ProductList, ProductListItem } from "./Products.elements";
 interface IProps {
   products: IProduct[] | undefined;
   // addItemToCart: () => void;
-  addItemToCart: (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
+  // addItemToCart: (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
+  addItemToCart: (clickedItem: IProduct) => void;
 }
 
 const Products: React.FC<IProps> = ({
@@ -17,9 +18,9 @@ const Products: React.FC<IProps> = ({
         {products
           ? products.map((product) => (
               <ProductListItem
-                data-id={product.id}
+                // data-id={product.id}
                 key={product.id}
-                onClick={addItemToCart}
+                onClick={() => addItemToCart(product)}
               >
                 <img
                   src={product.url}

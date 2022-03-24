@@ -7,7 +7,7 @@ import {
   MenuLink,
   CheckoutButton,
 } from "./Header.elements";
-import { HorizontalDivider } from "../../components/index";
+import { HorizontalDivider } from "../../Components";
 import { ICart } from "../../App";
 
 interface IProps {

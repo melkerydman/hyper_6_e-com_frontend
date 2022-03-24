@@ -1,10 +1,6 @@
-import {
-  VerticalDivider,
-  HorizontalDivider,
-  Button,
-} from "../../components/index";
-import { Main } from "../../layout/index";
-import { Grid, Wrapper } from "../../utils/index";
+import { VerticalDivider, HorizontalDivider, Button } from "../../Components";
+import { Main } from "../../Layout";
+import { Grid, Wrapper } from "../../Utils";
 import {
   ProductInfo,
   ProductImages,

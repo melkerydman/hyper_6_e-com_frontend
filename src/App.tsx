@@ -2,19 +2,25 @@ import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { ThemeProvider } from "styled-components";
-import GlobalStyle from "./styles/Global";
-import { Cart } from "./components/index";
-import { Header, Footer } from "./layout/index";
-import { AppGrid } from "./utils/index";
-import { Products, Product } from "./pages/index";
+import GlobalStyle from "./Styles/Global";
+import { Cart } from "./Components";
+import { Header, Footer } from "./Layout";
+import { AppGrid } from "./Utils";
+import { Products, Product } from "./Pages";
 
 import { COLORS } from "./constants";
 
 // Interface
 export interface ICart {
   isShowing: boolean;
-  // items: any[] | [];
   items: IProduct[];
+}
+// export interface ICart {
+//   isShowing: boolean;
+//   items: ICartItem[];
+// }
+export interface ICartItem extends IProduct {
+  quantity: number;
 }
 export interface IProduct {
   id: number;
@@ -25,29 +31,14 @@ export interface IProduct {
   year: number;
   dimensions: string;
   edition: string;
+  quantity?: number;
 }
-// export interface IState {
-//   cart: {
-//     isShowing: boolean;
-//     amountOfItems?: number;
-//     // items?: product[];
-//   };
-//   product: {
-//     title: string;
-//     artist: string;
-//     url: string;
-//     price: number;
-//     year: number;
-//     dimensions: string;
-//     edition: string;
-//     details: string;
-//   };
-// }
 
 // Export and put types here
 const App = () => {
+  // items: [] as ICartItem[] - change to this at later stage when safe
   const [cart, setCart] = useState<ICart>({ isShowing: false, items: [] });
-  const [products, setProducts] = useState<IProduct[]>([]);
+  const [products, setProducts] = useState<IProduct[]>([] as IProduct[]);
 
   const handleFetchProducts = async () => {
     const response = await fetch("products.json", {
@@ -64,23 +55,30 @@ const App = () => {
     setCart((prev) => ({ ...cart, isShowing: !prev.isShowing }));
   };
 
-  const addItemToCart = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-    if (!e.currentTarget.dataset.id) return;
+  const addItemToCart = (clickedItem: IProduct) => {
+    setCart((prev) => {
+      const itemAlreadyInCart = prev.items.find(
+        (item) => item.id === clickedItem.id
+      );
 
-    const targetId = e.currentTarget.dataset.id;
-    const itemToAdd = products.find(
-      (product) => product.id === parseInt(targetId)
-    );
-
-    // Return if didn't find item
-    if (!itemToAdd) return;
-
-    // Else update cart
-    setCart((prev) => ({
-      ...cart,
-      items: [...prev.items, itemToAdd],
-    }));
+      if (!itemAlreadyInCart) {
+        return {
+          ...prev,
+          items: [...prev.items, { ...clickedItem, quantity: 1 }],
+        };
+      }
+      return {
+        ...prev,
+        items: prev.items.map((item) =>
+          item.id === clickedItem.id && item.quantity
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        ),
+      };
+    });
   };
+
+  const removeItemFromCart = () => {};
 
   useEffect(() => {
     handleFetchProducts();

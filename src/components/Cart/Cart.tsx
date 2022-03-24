@@ -25,6 +25,7 @@ const Cart: React.FC<IProps> = ({ cart, handleOpenCart }): JSX.Element => {
             <p>{item.title}</p>
             <p>{item.artist}</p>
             <p>{item.price}</p>
+            <p>Quantity: {item.quantity}</p>
           </CartListItem>
         ))}
       </CartList>

@@ -8,7 +8,7 @@ import {
   CheckoutButton,
 } from "./Header.elements";
 import { HorizontalDivider } from "../../Components";
-import { ICart } from "../../App";
+import { ICart, IProduct } from "../../App";
 
 interface IProps {
   cart: ICart;
@@ -19,6 +19,15 @@ const Header: React.FC<IProps> = ({
   cart: { items },
   handleOpenCart,
 }): JSX.Element => {
+  const calculateItemsInBag = (items: IProduct[]): number => {
+    return items.reduce(
+      (currentAmountOfItems: number, item: IProduct): number => {
+        return item.quantity! + currentAmountOfItems;
+      },
+      0
+    );
+  };
+
   return (
     <StyledHeader>
       <Nav>
@@ -36,7 +45,7 @@ const Header: React.FC<IProps> = ({
             handleOpenCart();
           }}
         >
-          Bag ({items.length})
+          Bag ({calculateItemsInBag(items)})
         </CheckoutButton>
       </Nav>
       <HorizontalDivider bottom />

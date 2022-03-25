@@ -78,7 +78,21 @@ const App = () => {
     });
   };
 
-  const removeItemFromCart = () => {};
+  const removeItemFromCart = (id: number) => {
+    setCart((prev) => {
+      return {
+        ...prev,
+        items: prev.items.reduce((acc, item) => {
+          if (item.id === id) {
+            if (item.quantity === 1) return acc;
+            return [...acc, { ...item, quantity: item.quantity! - 1 }];
+          } else {
+            return [...acc, item];
+          }
+        }, [] as IProduct[]),
+      };
+    });
+  };
 
   useEffect(() => {
     handleFetchProducts();
@@ -89,7 +103,11 @@ const App = () => {
       <ThemeProvider theme={{ colors: COLORS }}>
         <GlobalStyle />
         <AppGrid>
-          <Cart cart={cart} handleOpenCart={handleOpenCart} />
+          <Cart
+            cart={cart}
+            handleOpenCart={handleOpenCart}
+            removeItemFromCart={removeItemFromCart}
+          />
           <Header cart={cart} handleOpenCart={handleOpenCart} />
           <Routes>
             {/* <Route

@@ -19,6 +19,12 @@ export const StyledCart = styled.section<CartType>`
   overflow: scroll;
 `;
 
-export const CartList = styled.ul``;
+export const CartList = styled.ul`
+  display: grid;
+  grid-template-rows: auto;
+  gap: 1rem;
+`;
 
-export const CartListItem = styled.li``;
+export const CartListItem = styled.li`
+  background-color: blue;
+`;

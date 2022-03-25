@@ -5,9 +5,14 @@ import { ICart } from "../../App";
 interface IProps {
   cart: ICart;
   handleOpenCart: () => void;
+  removeItemFromCart: (id: number) => void;
 }
 
-const Cart: React.FC<IProps> = ({ cart, handleOpenCart }): JSX.Element => {
+const Cart: React.FC<IProps> = ({
+  cart,
+  handleOpenCart,
+  removeItemFromCart,
+}): JSX.Element => {
   return (
     <StyledCart isShowing={cart.isShowing}>
       <VerticalDivider />
@@ -21,7 +26,10 @@ const Cart: React.FC<IProps> = ({ cart, handleOpenCart }): JSX.Element => {
       <div>Items</div>
       <CartList>
         {cart.items.map((item) => (
-          <CartListItem key={item.id}>
+          <CartListItem
+            onClick={() => removeItemFromCart(item.id)}
+            key={item.id}
+          >
             <p>{item.title}</p>
             <p>{item.artist}</p>
             <p>{item.price}</p>

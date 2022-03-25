@@ -14,6 +14,7 @@ import { COLORS } from "./constants";
 export interface ICart {
   isShowing: boolean;
   items: IProduct[];
+  totalQuantity: number;
 }
 // export interface ICart {
 //   isShowing: boolean;
@@ -37,7 +38,11 @@ export interface IProduct {
 // Export and put types here
 const App = () => {
   // items: [] as ICartItem[] - change to this at later stage when safe
-  const [cart, setCart] = useState<ICart>({ isShowing: false, items: [] });
+  const [cart, setCart] = useState<ICart>({
+    isShowing: false,
+    items: [],
+    totalQuantity: 0,
+  });
   const [products, setProducts] = useState<IProduct[]>([] as IProduct[]);
 
   const handleFetchProducts = async () => {
@@ -55,6 +60,15 @@ const App = () => {
     setCart((prev) => ({ ...cart, isShowing: !prev.isShowing }));
   };
 
+  const calculateItemsInBag = (items: IProduct[]): number => {
+    return items.reduce(
+      (currentAmountOfItems: number, item: IProduct): number => {
+        return item.quantity! + currentAmountOfItems;
+      },
+      0
+    );
+  };
+
   const addItemToCart = (clickedItem: IProduct) => {
     setCart((prev) => {
       const itemAlreadyInCart = prev.items.find(
@@ -64,11 +78,13 @@ const App = () => {
       if (!itemAlreadyInCart) {
         return {
           ...prev,
+          totalQuantity: prev.totalQuantity + 1,
           items: [...prev.items, { ...clickedItem, quantity: 1 }],
         };
       }
       return {
         ...prev,
+        totalQuantity: prev.totalQuantity + 1,
         items: prev.items.map((item) =>
           item.id === clickedItem.id && item.quantity
             ? { ...item, quantity: item.quantity + 1 }
@@ -82,6 +98,7 @@ const App = () => {
     setCart((prev) => {
       return {
         ...prev,
+        totalQuantity: prev.totalQuantity - 1,
         items: prev.items.reduce((acc, item) => {
           if (item.id === id) {
             if (item.quantity === 1) return acc;
@@ -107,8 +124,13 @@ const App = () => {
             cart={cart}
             handleOpenCart={handleOpenCart}
             removeItemFromCart={removeItemFromCart}
+            addItemToCart={addItemToCart}
           />
-          <Header cart={cart} handleOpenCart={handleOpenCart} />
+          <Header
+            cart={cart}
+            handleOpenCart={handleOpenCart}
+            calculateItemsInBag={calculateItemsInBag}
+          />
           <Routes>
             {/* <Route
               path="/product"

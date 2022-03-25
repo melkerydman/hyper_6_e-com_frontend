@@ -33,7 +33,8 @@ export const Nav = styled.nav`
 `;
 
 export const Logo = styled.a`
-  text-transform: uppercase;
+  font-size: var(--h3);
+  color: #000;
 `;
 
 export const Menu = styled.ul`
@@ -47,6 +48,14 @@ export const Menu = styled.ul`
 `;
 
 export const MenuItem = styled.li``;
-export const MenuLink = styled.a``;
+export const MenuLink = styled.a`
+  font-size: var(--h3);
+`;
 
-export const CheckoutButton = styled.button``;
+export const CheckoutButton = styled.button`
+  background: transparent;
+  border: none;
+  font-size: var(--h3);
+
+  cursor: pointer;
+`;

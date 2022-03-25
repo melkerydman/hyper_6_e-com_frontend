@@ -1,42 +1,50 @@
-import { StyledCart, CartList, CartListItem } from "./Cart.styled";
-import { VerticalDivider } from "../Divider/Divider.styled";
-import { ICart } from "../../App";
+import { StyledCart, CartHeader, CartList, CartListItem } from "./Cart.styled";
+import { VerticalDivider, HorizontalDivider, Button } from "../../Components";
+import { ICart, IProduct } from "../../App";
 
 interface IProps {
   cart: ICart;
   handleOpenCart: () => void;
   removeItemFromCart: (id: number) => void;
+  addItemToCart: (clickedItem: IProduct) => void;
 }
 
 const Cart: React.FC<IProps> = ({
   cart,
   handleOpenCart,
   removeItemFromCart,
+  addItemToCart,
 }): JSX.Element => {
   return (
     <StyledCart isShowing={cart.isShowing}>
       <VerticalDivider />
-      <div
-        onClick={() => {
-          handleOpenCart();
-        }}
-      >
-        Close
-      </div>
-      <div>Items</div>
+      <CartHeader>
+        <div>Bag({cart.totalQuantity})</div>
+        <div
+          onClick={() => {
+            handleOpenCart();
+          }}
+        >
+          Close
+        </div>
+        <HorizontalDivider bottom />
+      </CartHeader>
       <CartList>
         {cart.items.map((item) => (
-          <CartListItem
-            onClick={() => removeItemFromCart(item.id)}
-            key={item.id}
-          >
+          <CartListItem key={item.id}>
             <p>{item.title}</p>
             <p>{item.artist}</p>
-            <p>{item.price}</p>
-            <p>Quantity: {item.quantity}</p>
+            <p>£{item.price}</p>
+            <div>
+              <button onClick={() => removeItemFromCart(item.id)}>-</button>
+              <div>{item.quantity}</div>
+              <button onClick={() => addItemToCart(item)}>+</button>
+            </div>
           </CartListItem>
         ))}
       </CartList>
+      <h2>Subtotal</h2>
+      <Button>Checkout</Button>
     </StyledCart>
   );
 };

@@ -16,7 +16,7 @@ export const ProductInfo = styled.div`
 
 export const ProductHeader = styled.header`
   h2 {
-    font-size: 47px;
+    font-size: var(--h1);
     font-weight: 500;
   }
 `;

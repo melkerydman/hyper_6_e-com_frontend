@@ -13,21 +13,14 @@ import { ICart, IProduct } from "../../App";
 interface IProps {
   cart: ICart;
   handleOpenCart: () => void;
+  calculateItemsInBag: (items: IProduct[]) => number;
 }
 
 const Header: React.FC<IProps> = ({
-  cart: { items },
+  cart,
   handleOpenCart,
+  calculateItemsInBag,
 }): JSX.Element => {
-  const calculateItemsInBag = (items: IProduct[]): number => {
-    return items.reduce(
-      (currentAmountOfItems: number, item: IProduct): number => {
-        return item.quantity! + currentAmountOfItems;
-      },
-      0
-    );
-  };
-
   return (
     <StyledHeader>
       <Nav>
@@ -45,7 +38,7 @@ const Header: React.FC<IProps> = ({
             handleOpenCart();
           }}
         >
-          Bag ({calculateItemsInBag(items)})
+          Bag ({cart.totalQuantity})
         </CheckoutButton>
       </Nav>
       <HorizontalDivider bottom />

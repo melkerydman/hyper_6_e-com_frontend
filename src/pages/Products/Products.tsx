@@ -1,5 +1,11 @@
 import { IProduct } from "../../App";
-import { ProductList, ProductListItem } from "./Products.elements";
+import {
+  ProductHeader,
+  ProductList,
+  ProductListItem,
+  ImageWrapper,
+} from "./Products.elements";
+import { Button } from "../../Components";
 
 interface IProps {
   products: IProduct[] | undefined;
@@ -13,29 +19,37 @@ const Products: React.FC<IProps> = ({
   addItemToCart,
 }): JSX.Element => {
   return (
-    <div>
+    <>
+      <ProductHeader>
+        <h2>Print gallery</h2>
+      </ProductHeader>
       <ProductList>
         {products
           ? products.map((product) => (
               <ProductListItem
                 // data-id={product.id}
                 key={product.id}
-                onClick={() => addItemToCart(product)}
               >
-                <img
-                  src={product.url}
-                  alt={`${product.title} by ${product.artist}`}
-                />
+                <ImageWrapper>
+                  <img
+                    src="/images/hunros-2.jpeg"
+                    // src={product.url}
+                    alt={`${product.title} by ${product.artist}`}
+                  />
+                </ImageWrapper>
                 <div>
-                  <p>{product.title}</p>
-                  <p>by {product.artist}</p>
+                  <h2>{product.title}</h2>
+                  <h2>by {product.artist}</h2>
                   <p>£{product.price}</p>
+                  <Button onClick={() => addItemToCart(product)}>
+                    Add to cart
+                  </Button>
                 </div>
               </ProductListItem>
             ))
           : "Failed to load products"}
       </ProductList>
-    </div>
+    </>
   );
 };
 

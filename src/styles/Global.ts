@@ -5,8 +5,36 @@ export default createGlobalStyle`
 
 :root {
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
-  font-family: 'Inter', sans-serif;;
-  --clr-background: ${COLORS.primary[0]};
+  font-family: 'Inter', sans-serif;
+
+  --h1: 44px;
+  --h2: 32px;
+  --h3: 24px;
+  --h4: 20px;
+  --h5: 16px;
+  --h6: 12px;
+  --paragraph: 14px;
+  --span: 12px;
+  --h1-line_height: 0.8;
+  --h2-line_height: 1;
+  --h3-line_height: 1;
+  --h4-line_height: 1;
+  --h5-line_height: 1;
+  --h6-line_height: 1;
+  --paragraph-line_height: 1.53;
+  --span-line_height: 1;
+  --h1-letter_spacing: -7%;
+  --h2-letter_spacing: -7%;
+  --h3-letter_spacing: -7%;
+  --h4-letter_spacing: -7%;
+  --h5-letter_spacing: -7%;
+  --h6-letter_spacing: -7%;
+  --paragraph-letter_spacing: normal;
+  --span-letter_spacing: 0.22px;
+
+  /* Colors */
+  --color-primary: ${COLORS.primary[1]};
+  --color-neutral: ${COLORS.neutral[0]};
 }
 
 html,
@@ -114,9 +142,10 @@ section {
 }
 body {
   line-height: 1;
+  font-weight: 400;
 
   min-height: 100vh;
-  background: var(--clr-background);
+  background: var(--color-primary);
   
   overscroll-behavior: none
 }

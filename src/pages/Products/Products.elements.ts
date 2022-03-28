@@ -10,19 +10,27 @@ export const ProductHeader = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 150px;
+  height: 250px;
 
   h2 {
-    font-size: var(--h1);
+    font-size: var(--h2);
   }
 `;
 
 export const ProductList = styled.ul`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 1rem;
 
   padding: 1rem;
+
+  @media (max-width: 1280px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
 `;
 export const ProductListItem = styled.li`
   h2 {

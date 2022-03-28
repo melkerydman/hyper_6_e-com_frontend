@@ -10,7 +10,7 @@ export const StyledCart = styled.section<CartType>`
   top: 0;
   right: 0;
   height: 100vh;
-  width: calc(62.45% + 1px);
+  width: calc(50% + 1px);
   background: var(--color-primary);
 
   transform: ${({ isShowing }) =>

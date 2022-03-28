@@ -21,14 +21,14 @@ const Products: React.FC<IProps> = ({
   return (
     <>
       <ProductHeader>
-        <h2>Print gallery</h2>
+        <h2>(Prints)</h2>
       </ProductHeader>
       <ProductList>
         {products
           ? products.map((product) => (
               <ProductListItem
                 // data-id={product.id}
-                key={product.id}
+                key={product._id}
               >
                 <ImageWrapper>
                   <img

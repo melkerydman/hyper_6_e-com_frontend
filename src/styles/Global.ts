@@ -35,6 +35,9 @@ export default createGlobalStyle`
   /* Colors */
   --color-primary: ${COLORS.primary[1]};
   --color-neutral: ${COLORS.neutral[0]};
+  --color-light: #efefef;
+  --color-grey: #c4c4c4;
+  --color-dark: #171717;
 }
 
 html,
@@ -145,7 +148,7 @@ body {
   font-weight: 400;
 
   min-height: 100vh;
-  background: var(--color-primary);
+  background: var(--color-light);
   
   overscroll-behavior: none
 }

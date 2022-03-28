@@ -13,14 +13,9 @@ import { ICart, IProduct } from "../../App";
 interface IProps {
   cart: ICart;
   handleOpenCart: () => void;
-  calculateItemsInBag: (items: IProduct[]) => number;
 }
 
-const Header: React.FC<IProps> = ({
-  cart,
-  handleOpenCart,
-  calculateItemsInBag,
-}): JSX.Element => {
+const Header: React.FC<IProps> = ({ cart, handleOpenCart }): JSX.Element => {
   return (
     <StyledHeader>
       <Nav>

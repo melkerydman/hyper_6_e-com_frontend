@@ -31,12 +31,12 @@ const Cart: React.FC<IProps> = ({
       </CartHeader>
       <CartList>
         {cart.items.map((item) => (
-          <CartListItem key={item.id}>
+          <CartListItem key={item._id}>
             <p>{item.title}</p>
             <p>{item.artist}</p>
             <p>£{item.price}</p>
             <div>
-              <button onClick={() => removeItemFromCart(item.id)}>-</button>
+              <button onClick={() => removeItemFromCart(item._id)}>-</button>
               <div>{item.quantity}</div>
               <button onClick={() => addItemToCart(item)}>+</button>
             </div>

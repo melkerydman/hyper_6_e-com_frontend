@@ -1,4 +1,4 @@
 export const COLORS = {
-  neutral: ["#300000"],
+  neutral: ["#FED29F"],
   primary: ["#FED29F", "#F1E0E2"],
 };

@@ -7,6 +7,7 @@ import { Cart } from "./Components";
 import { Header, Footer } from "./Layout";
 import { AppGrid } from "./Utils";
 import { Products, Product } from "./Pages";
+import { getAllProducts } from "./Services";
 
 import { COLORS } from "./constants";
 
@@ -24,7 +25,7 @@ export interface ICartItem extends IProduct {
   quantity: number;
 }
 export interface IProduct {
-  id: number;
+  _id: number;
   title: string;
   artist: string;
   url: string;
@@ -45,34 +46,25 @@ const App = () => {
   });
   const [products, setProducts] = useState<IProduct[]>([] as IProduct[]);
 
-  const handleFetchProducts = async () => {
-    const response = await fetch("products.json", {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
-    const products = await response.json();
-    setProducts(products);
-  };
+  // const handleFetchProducts = async () => {
+  //   const response = await fetch("products.json", {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //     },
+  //   });
+  //   const products = await response.json();
+  //   setProducts(products);
+  // };
 
   const handleOpenCart = () => {
     setCart((prev) => ({ ...cart, isShowing: !prev.isShowing }));
   };
 
-  const calculateItemsInBag = (items: IProduct[]): number => {
-    return items.reduce(
-      (currentAmountOfItems: number, item: IProduct): number => {
-        return item.quantity! + currentAmountOfItems;
-      },
-      0
-    );
-  };
-
   const addItemToCart = (clickedItem: IProduct) => {
     setCart((prev) => {
       const itemAlreadyInCart = prev.items.find(
-        (item) => item.id === clickedItem.id
+        (item) => item._id === clickedItem._id
       );
 
       if (!itemAlreadyInCart) {
@@ -86,7 +78,7 @@ const App = () => {
         ...prev,
         totalQuantity: prev.totalQuantity + 1,
         items: prev.items.map((item) =>
-          item.id === clickedItem.id && item.quantity
+          item._id === clickedItem._id && item.quantity
             ? { ...item, quantity: item.quantity + 1 }
             : item
         ),
@@ -100,7 +92,7 @@ const App = () => {
         ...prev,
         totalQuantity: prev.totalQuantity - 1,
         items: prev.items.reduce((acc, item) => {
-          if (item.id === id) {
+          if (item._id === id) {
             if (item.quantity === 1) return acc;
             return [...acc, { ...item, quantity: item.quantity! - 1 }];
           } else {
@@ -112,7 +104,11 @@ const App = () => {
   };
 
   useEffect(() => {
-    handleFetchProducts();
+    (async () => {
+      const products = await getAllProducts();
+      setProducts(products);
+    })();
+    // handleFetchProducts();
   }, []);
 
   return (
@@ -126,11 +122,7 @@ const App = () => {
             removeItemFromCart={removeItemFromCart}
             addItemToCart={addItemToCart}
           />
-          <Header
-            cart={cart}
-            handleOpenCart={handleOpenCart}
-            calculateItemsInBag={calculateItemsInBag}
-          />
+          <Header cart={cart} handleOpenCart={handleOpenCart} />
           <Routes>
             {/* <Route
               path="/product"

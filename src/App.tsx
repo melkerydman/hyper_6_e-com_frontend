@@ -31,14 +31,16 @@ export interface ICartItem extends IProduct {
   quantity: number;
 }
 export interface IProduct {
-  _id: number;
+  _id: string;
   title: string;
+  exhibition: string;
   artist: string;
   url: string;
   price: number;
   year: number;
   dimensions: string;
   edition: string;
+  details: string;
   quantity?: number;
 }
 
@@ -67,32 +69,47 @@ const App = () => {
     setCart((prev) => ({ ...cart, isShowing: !prev.isShowing }));
   };
 
-  const addItemToCart = (clickedItem: IProduct) => {
+  const addItemToCart = (clickedItem: IProduct, passedQuantity?: number) => {
     setCart((prev) => {
       const itemAlreadyInCart = prev.items.find(
         (item) => item._id === clickedItem._id
       );
 
+      // If item doesn't exist in cart, add it
       if (!itemAlreadyInCart) {
         return {
           ...prev,
-          totalQuantity: prev.totalQuantity + 1,
-          items: [...prev.items, { ...clickedItem, quantity: 1 }],
+          // If specific quantity has been passed increase totalQuantity with that, otherwise increment by one
+          totalQuantity: passedQuantity
+            ? prev.totalQuantity + passedQuantity
+            : prev.totalQuantity + 1,
+          // If specific quantity has been passed increase quantity with that, otherwise increment by one
+          items: [
+            ...prev.items,
+            { ...clickedItem, quantity: passedQuantity ? passedQuantity : 1 },
+          ],
         };
       }
       return {
         ...prev,
-        totalQuantity: prev.totalQuantity + 1,
+        totalQuantity: passedQuantity
+          ? prev.totalQuantity + passedQuantity
+          : prev.totalQuantity + 1,
         items: prev.items.map((item) =>
           item._id === clickedItem._id && item.quantity
-            ? { ...item, quantity: item.quantity + 1 }
+            ? {
+                ...item,
+                quantity: passedQuantity
+                  ? item.quantity + passedQuantity
+                  : item.quantity + 1,
+              }
             : item
         ),
       };
     });
   };
 
-  const removeItemFromCart = (id: number) => {
+  const removeItemFromCart = (id: string) => {
     setCart((prev) => {
       return {
         ...prev,
@@ -130,15 +147,15 @@ const App = () => {
           />
           <Header cart={cart} handleOpenCart={handleOpenCart} />
           <Routes>
-            {/* <Route
-              path="/product"
-              element={<Product addItemToCart={addItemToCart} />}
-            /> */}
             <Route
               path="/products"
               element={
                 <Products products={products} addItemToCart={addItemToCart} />
               }
+            />
+            <Route
+              path="products/:id"
+              element={<Product addItemToCart={addItemToCart} />}
             />
           </Routes>
           <Footer />

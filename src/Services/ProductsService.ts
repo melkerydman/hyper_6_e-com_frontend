@@ -21,6 +21,26 @@ export const getSpecificProduct = async (id: string) => {
     });
     return await response.json();
   } catch (error) {
-    return [];
+    console.log(error);
+    return error;
   }
 };
+
+// fetch(`${API_BASE_URL}/dogs/${params.id}`, {
+//   headers: { "content-type": "application/json" },
+// })
+//   .then((response) => {
+//     if (!response.ok) {
+//       console.log(response.status);
+//       throw Error(response.status);
+//     } else {
+//       return response.json();
+//     }
+//   })
+//   .then((json) => {
+//     setDog(json);
+//     setError(null);
+//   })
+//   .catch((err) => {
+//     setError(err.message);
+//   });

@@ -56,6 +56,7 @@ export const ImageWrapper = styled.div`
   background-color: var(--color-neutral);
 
   > img {
+    max-height: 100%;
     transition: all 0.5s ease-in-out;
     transform: scale(1);
   }

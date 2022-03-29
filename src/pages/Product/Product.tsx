@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
 import { VerticalDivider, HorizontalDivider, Button } from "../../Components";
 import { Main } from "../../Layout";
 import { Grid, Wrapper } from "../../Utils";
@@ -11,66 +14,113 @@ import {
   Action,
   MoreProducts,
 } from "./Product.elements";
+import { IProduct } from "../../App";
+import * as config from "../../Config/config";
 
 interface IProps {
-  addItemToCart: () => void;
+  addItemToCart: (clickedItem: IProduct, quantity: number) => void;
 }
 
 const Product: React.FC<IProps> = ({ addItemToCart }): JSX.Element => {
-  return (
+  const params = useParams();
+  const [product, setProduct] = useState<IProduct>({} as IProduct);
+  const [quantity, setQuantity] = useState<number>(1);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch(`${config.API_BASE_URL}/products/${params.id}`, {
+      headers: { "content-type": "application/json" },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          console.log(response.status);
+          throw Error(response.status.toString());
+        } else {
+          return response.json();
+        }
+      })
+      .then((json) => {
+        setProduct(json);
+        setError(null);
+      })
+      .catch((err) => {
+        setError(err.message);
+      });
+  }, [params.id]);
+
+  return product ? (
     <Main>
       <Wrapper>
         <Grid>
           <ProductInfo>
             <ProductHeader>
-              <h2>Name of Piece</h2>
-              <h2>from Exhibition</h2>
-              <div>£100</div>
+              <h2>{product.title}</h2>
+              <h2>from {product.exhibition}</h2>
+              <h2>by {product.artist}</h2>
+              <div>£{product.price}</div>
             </ProductHeader>
             <ProductDetails>
               <Detail>
                 <div>Year:</div>
-                <div>2022</div>
+                <div>{product.year}</div>
               </Detail>
               <Detail>
                 <div>Dimensions:</div>
-                <div>A3</div>
+                <div>{product.dimensions}</div>
               </Detail>
               <Detail>
                 <div>Edition:</div>
-                <div>Limited of 10</div>
+                <div>{product.edition}</div>
               </Detail>
               <Detail top>
                 <div>Details:</div>
-                <div>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
-                  voluptatem placeat pariatur. Ducimus, odit. Lorem, ipsum dolor
-                  sit amet consectetur adipisicing elit. Dolore, sapiente.
-                </div>
+                <div>{product.details}</div>
               </Detail>
               <HorizontalDivider />
             </ProductDetails>
             <Action>
               <Quantity>
-                <div>-</div>
-                <input
+                <div
+                  onClick={() => {
+                    if (quantity > 1) {
+                      setQuantity((prev) => prev - 1);
+                    }
+                  }}
+                >
+                  -
+                </div>
+                {/* <input
                   type="number"
                   id="quantity"
                   name="quantity"
-                  value={1}
+                  value={quantity}
                   min="1"
                   max="5"
-                ></input>
-                <div>+</div>
+                ></input> */}
+                {quantity}
+                <div
+                  onClick={() => {
+                    setQuantity((prev) => prev + 1);
+                  }}
+                >
+                  +
+                </div>
               </Quantity>
-              <Button onClick={() => addItemToCart()}>Add to cart</Button>
+              <Button
+                onClick={() => {
+                  addItemToCart(product, quantity);
+                  setQuantity(1);
+                }}
+              >
+                Add to cart
+              </Button>
             </Action>
           </ProductInfo>
           <VerticalDivider center />
           <ProductImages>
-            <img src="/images/hunros-1.jpeg" alt="" />
-            <img src="/images/hunros-2.jpeg" alt="" />
-            <img src="/images/hunros-3.jpeg" alt="" />
+            <img src="/images/print-2/1.jpeg" alt="" />
+            <img src="/images/print-2/2.jpeg" alt="" />
+            <img src="/images/print-2/3.jpeg" alt="" />
             <img src="/images/hunros-4.jpeg" alt="" />
             <img src="/images/hunros-5.jpeg" alt="" />
           </ProductImages>
@@ -79,6 +129,8 @@ const Product: React.FC<IProps> = ({ addItemToCart }): JSX.Element => {
       </Wrapper>
       <MoreProducts>More products</MoreProducts>
     </Main>
+  ) : (
+    <>Loading</>
   );
 };
 

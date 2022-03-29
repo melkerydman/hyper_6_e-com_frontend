@@ -5,7 +5,7 @@ import { ICart, IProduct } from "../../App";
 interface IProps {
   cart: ICart;
   handleOpenCart: () => void;
-  removeItemFromCart: (id: number) => void;
+  removeItemFromCart: (id: string) => void;
   addItemToCart: (clickedItem: IProduct) => void;
 }
 
@@ -38,6 +38,7 @@ const Cart: React.FC<IProps> = ({
             <div>
               <button onClick={() => removeItemFromCart(item._id)}>-</button>
               <div>{item.quantity}</div>
+              {console.log("quantity from cart", item.quantity)}
               <button onClick={() => addItemToCart(item)}>+</button>
             </div>
           </CartListItem>

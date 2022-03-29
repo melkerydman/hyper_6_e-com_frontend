@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { IProduct } from "../../App";
 import {
   ProductHeader,
@@ -25,26 +26,30 @@ const Products: React.FC<IProps> = ({
       </ProductHeader>
       <ProductList>
         {products
-          ? products.map((product) => (
+          ? products.map((product, index: number) => (
               <ProductListItem
                 // data-id={product.id}
                 key={product._id}
               >
-                <ImageWrapper>
-                  <img
-                    src="/images/hunros-2.jpeg"
-                    // src={product.url}
-                    alt={`${product.title} by ${product.artist}`}
-                  />
-                </ImageWrapper>
-                <div>
-                  <h2>{product.title}</h2>
-                  <h2>by {product.artist}</h2>
-                  <p>£{product.price}</p>
-                  <Button onClick={() => addItemToCart(product)}>
-                    Add to cart
-                  </Button>
-                </div>
+                <Link to={`/products/${product._id}`}>
+                  {/* <Link to={`/${product._id}`}> */}
+                  <ImageWrapper>
+                    <img
+                      // src="/images/hunros-2.jpeg"
+                      src={`/images/print-${index + 1}/2.jpeg`}
+                      // src={product.url}
+                      alt={`${product.title} by ${product.artist}`}
+                    />
+                  </ImageWrapper>
+                  <div>
+                    <h2>{product.title}</h2>
+                    <h2>by {product.artist}</h2>
+                    <p>£{product.price}</p>
+                  </div>
+                </Link>
+                <Button onClick={() => addItemToCart(product)}>
+                  Add to cart
+                </Button>
               </ProductListItem>
             ))
           : "Failed to load products"}

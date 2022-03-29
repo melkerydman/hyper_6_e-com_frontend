@@ -19,13 +19,13 @@ const Header: React.FC<IProps> = ({ cart, handleOpenCart }): JSX.Element => {
   return (
     <StyledHeader>
       <Nav>
-        <Logo href="/">Reverie — Daydream</Logo>
+        <Logo to={"/"}>Reverie — Daydream</Logo>
         <Menu>
           <MenuItem>
-            <MenuLink>Shop</MenuLink>
+            <MenuLink to={"/products"}>Shop</MenuLink>
           </MenuItem>
           <MenuItem>
-            <MenuLink>Story</MenuLink>
+            <MenuLink to={"/"}>Story</MenuLink>
           </MenuItem>
         </Menu>
         <CheckoutButton

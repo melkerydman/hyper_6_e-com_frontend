@@ -1,7 +1,7 @@
 /**
  * TODO MenuLink to react-router Link instead of a-tag
  */
-
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Header = styled.header`
@@ -32,7 +32,7 @@ export const Nav = styled.nav`
   align-items: center;
 `;
 
-export const Logo = styled.a`
+export const Logo = styled(Link)`
   font-size: var(--h3);
   color: #000;
 `;
@@ -48,7 +48,7 @@ export const Menu = styled.ul`
 `;
 
 export const MenuItem = styled.li``;
-export const MenuLink = styled.a`
+export const MenuLink = styled(Link)`
   font-size: var(--h3);
 `;
 

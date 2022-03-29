@@ -11,6 +11,12 @@ import { getAllProducts } from "./Services";
 
 import { COLORS } from "./constants";
 
+/**
+ * todo add cartContext
+ * todo break out interfaces
+ * todo - not part of mvp but have stock property for items
+ */
+
 // Interface
 export interface ICart {
   isShowing: boolean;

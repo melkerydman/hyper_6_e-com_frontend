@@ -10,10 +10,10 @@ import {
   ProductHeader,
   ProductDetails,
   Detail,
-  Quantity,
   Action,
   MoreProducts,
 } from "./Product.elements";
+import { Quantity } from "../../Components/";
 import { IProduct } from "../../App";
 import * as config from "../../Config/config";
 
@@ -48,6 +48,15 @@ const Product: React.FC<IProps> = ({ addItemToCart }): JSX.Element => {
       });
   }, [params.id]);
 
+  const handleReduceQuantity = (quantity: number) => {
+    if (quantity > 1) {
+      setQuantity((prev) => prev - 1);
+    }
+  };
+  const handleIncreaseQuantity = () => {
+    setQuantity((prev) => prev + 1);
+  };
+
   return product ? (
     <Main>
       <Wrapper>
@@ -79,33 +88,11 @@ const Product: React.FC<IProps> = ({ addItemToCart }): JSX.Element => {
               <HorizontalDivider />
             </ProductDetails>
             <Action>
-              <Quantity>
-                <div
-                  onClick={() => {
-                    if (quantity > 1) {
-                      setQuantity((prev) => prev - 1);
-                    }
-                  }}
-                >
-                  -
-                </div>
-                {/* <input
-                  type="number"
-                  id="quantity"
-                  name="quantity"
-                  value={quantity}
-                  min="1"
-                  max="5"
-                ></input> */}
-                {quantity}
-                <div
-                  onClick={() => {
-                    setQuantity((prev) => prev + 1);
-                  }}
-                >
-                  +
-                </div>
-              </Quantity>
+              <Quantity
+                quantity={quantity}
+                handleReduceQuantity={handleReduceQuantity}
+                handleIncreaseQuantity={handleIncreaseQuantity}
+              />
               <Button
                 onClick={() => {
                   addItemToCart(product, quantity);

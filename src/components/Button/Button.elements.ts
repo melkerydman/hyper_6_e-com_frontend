@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Button = styled.button`
   width: 100%;
   padding: 1.25rem 0;
-  background: var(--color-primary);
+  background: var(--color-light);
 
   border: 1px solid black;
 
@@ -13,6 +13,6 @@ export const Button = styled.button`
 
   &:hover {
     background: black;
-    color: var(--color-primary);
+    color: var(--color-light);
   }
 `;

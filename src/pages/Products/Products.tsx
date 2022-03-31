@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { IProduct } from "../../App";
+import { IProduct } from "../../Interfaces";
 import {
   ProductHeader,
   ProductList,
@@ -7,6 +7,7 @@ import {
   ImageWrapper,
 } from "./Products.elements";
 import { Button } from "../../Components";
+import { Main } from "../../Layout";
 
 interface IProps {
   products: IProduct[] | undefined;
@@ -20,7 +21,7 @@ const Products: React.FC<IProps> = ({
   addItemToCart,
 }): JSX.Element => {
   return (
-    <>
+    <Main>
       <ProductHeader>
         <h2>(Prints)</h2>
       </ProductHeader>
@@ -54,7 +55,7 @@ const Products: React.FC<IProps> = ({
             ))
           : "Failed to load products"}
       </ProductList>
-    </>
+    </Main>
   );
 };
 

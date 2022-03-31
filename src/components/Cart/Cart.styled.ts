@@ -11,7 +11,7 @@ export const StyledCart = styled.section<CartType>`
   right: 0;
   height: 100vh;
   width: calc(50% + 1px);
-  background: var(--color-primary);
+  background: var(--color-light);
 
   transform: ${({ isShowing }) =>
     isShowing ? "translateX(0%)" : "translateX(100%)"};

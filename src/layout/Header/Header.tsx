@@ -8,7 +8,7 @@ import {
   CheckoutButton,
 } from "./Header.elements";
 import { HorizontalDivider } from "../../Components";
-import { ICart, IProduct } from "../../App";
+import { ICart, IProduct } from "../../Interfaces";
 
 interface IProps {
   cart: ICart;
@@ -19,13 +19,10 @@ const Header: React.FC<IProps> = ({ cart, handleOpenCart }): JSX.Element => {
   return (
     <StyledHeader>
       <Nav>
-        <Logo to={"/"}>Reverie — Daydream</Logo>
+        <Logo to={"/"}>Name</Logo>
         <Menu>
           <MenuItem>
             <MenuLink to={"/products"}>Shop</MenuLink>
-          </MenuItem>
-          <MenuItem>
-            <MenuLink to={"/"}>Story</MenuLink>
           </MenuItem>
         </Menu>
         <CheckoutButton
@@ -33,7 +30,7 @@ const Header: React.FC<IProps> = ({ cart, handleOpenCart }): JSX.Element => {
             handleOpenCart();
           }}
         >
-          Bag ({cart.totalQuantity})
+          Bag({cart.totalQuantity || 0})
         </CheckoutButton>
       </Nav>
       <HorizontalDivider bottom />

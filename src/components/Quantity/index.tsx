@@ -25,7 +25,7 @@ const Button = styled.button`
 
 interface IProps {
   quantity: number;
-  handleReduceQuantity: (quantity: number) => void;
+  handleReduceQuantity: () => void;
   handleIncreaseQuantity: () => void;
 }
 
@@ -38,7 +38,7 @@ const Quantity: React.FC<IProps> = ({
     <StyledQuantity>
       <Button
         onClick={() => {
-          handleReduceQuantity(quantity);
+          handleReduceQuantity();
         }}
       >
         -

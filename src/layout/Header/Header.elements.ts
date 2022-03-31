@@ -12,7 +12,7 @@ export const Header = styled.header`
   z-index: 1;
 
   width: 100%;
-  background: var(--color-primary);
+  background: var(--color-light);
 
   padding-left: 1.5rem;
   padding-right: 1.5rem;

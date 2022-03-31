@@ -14,7 +14,7 @@ import {
   MoreProducts,
 } from "./Product.elements";
 import { Quantity } from "../../Components/";
-import { IProduct } from "../../App";
+import { IProduct } from "../../Interfaces";
 import * as config from "../../Config/config";
 
 interface IProps {
@@ -48,13 +48,17 @@ const Product: React.FC<IProps> = ({ addItemToCart }): JSX.Element => {
       });
   }, [params.id]);
 
-  const handleReduceQuantity = (quantity: number) => {
+  const handleReduceQuantity = () => {
     if (quantity > 1) {
       setQuantity((prev) => prev - 1);
     }
   };
   const handleIncreaseQuantity = () => {
-    setQuantity((prev) => prev + 1);
+    setQuantity((prev) => {
+      console.log("prev: ", prev);
+      console.log("items in stock: ", product.inStock);
+      return prev < product.inStock ? prev + 1 : prev;
+    });
   };
 
   return product ? (
@@ -64,7 +68,7 @@ const Product: React.FC<IProps> = ({ addItemToCart }): JSX.Element => {
           <ProductInfo>
             <ProductHeader>
               <h2>{product.title}</h2>
-              <h2>from {product.exhibition}</h2>
+              {/* <h2>from {product.exhibition}</h2> */}
               <h2>by {product.artist}</h2>
               <div>£{product.price}</div>
             </ProductHeader>

@@ -11,4 +11,5 @@ export const AppGrid = styled.div`
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
   position: relative;
+  min-height: 100vh;
 `;

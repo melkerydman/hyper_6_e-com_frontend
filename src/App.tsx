@@ -1,75 +1,34 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Route, Routes } from "react-router-dom";
 
-import { ThemeProvider } from "styled-components";
+// import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./Styles/Global";
 import { Cart } from "./Components";
 import { Header, Footer } from "./Layout";
 import { AppGrid } from "./Utils";
-import { Products, Product } from "./Pages";
-import { getAllProducts } from "./Services";
+import { Home, Products, Product } from "./Pages";
+import {
+  updateCartInDb,
+  addCartToDb,
+  getCartFromDb,
+  getAllProducts,
+} from "./Services";
+import { ICart, ICartItem, IProduct } from "./Interfaces";
+import { CartContext } from "./Contexts";
+// import { COLORS } from "./constants";
 
-import { COLORS } from "./constants";
-
-/**
- * todo add cartContext
- * todo break out interfaces
- * todo - not part of mvp but have stock property for items
- */
-
-// Interface
-export interface ICart {
-  isShowing: boolean;
-  items: IProduct[];
-  totalQuantity: number;
-}
-// export interface ICart {
-//   isShowing: boolean;
-//   items: ICartItem[];
-// }
-export interface ICartItem extends IProduct {
-  quantity: number;
-}
-export interface IProduct {
-  _id: string;
-  title: string;
-  exhibition: string;
-  artist: string;
-  url: string;
-  price: number;
-  year: number;
-  dimensions: string;
-  edition: string;
-  details: string;
-  quantity?: number;
-}
-
-// Export and put types here
 const App = () => {
-  // items: [] as ICartItem[] - change to this at later stage when safe
-  const [cart, setCart] = useState<ICart>({
-    isShowing: false,
-    items: [],
-    totalQuantity: 0,
-  });
+  // State and context
+  const { cart, setCart, cartIdFromSession } = useContext(CartContext);
   const [products, setProducts] = useState<IProduct[]>([] as IProduct[]);
 
-  // const handleFetchProducts = async () => {
-  //   const response = await fetch("products.json", {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Accept: "application/json",
-  //     },
-  //   });
-  //   const products = await response.json();
-  //   setProducts(products);
-  // };
-
+  //Functions
   const handleOpenCart = () => {
     setCart((prev) => ({ ...cart, isShowing: !prev.isShowing }));
   };
-
   const addItemToCart = (clickedItem: IProduct, passedQuantity?: number) => {
+    console.log(cart);
+
     setCart((prev) => {
       const itemAlreadyInCart = prev.items.find(
         (item) => item._id === clickedItem._id
@@ -108,7 +67,6 @@ const App = () => {
       };
     });
   };
-
   const removeItemFromCart = (id: string) => {
     setCart((prev) => {
       return {
@@ -121,46 +79,76 @@ const App = () => {
           } else {
             return [...acc, item];
           }
-        }, [] as IProduct[]),
+        }, [] as ICartItem[]),
       };
     });
   };
+
+  console.log("cart after reload: ", cart);
 
   useEffect(() => {
     (async () => {
       const products = await getAllProducts();
       setProducts(products);
+      console.log("page reloaded");
+
+      // First check if there is already a cart in Session storage
+      // If yes - return
+      // If no run function addCartToDb
+      // then save cartId to session storage sessionStorage
+      if (cartIdFromSession) {
+        console.log("cart id exists");
+        const dataFromDb = await getCartFromDb(cartIdFromSession);
+        // console.log("dataFromDb: ", dataFromDb);
+        setCart(dataFromDb);
+      } else {
+        // When cart is added for the first time to Db, it returns its MongoDB id
+        console.log("cart: ", cart);
+        const cartId = await addCartToDb(cart);
+        if (cartId) {
+          sessionStorage.setItem("cartId", cartId);
+        }
+      }
     })();
-    // handleFetchProducts();
   }, []);
+
+  useEffect(() => {
+    console.log("cart updated");
+    // if no cartId stored - add new cart to db
+    // if cartId stored - update db with new data
+    if (cartIdFromSession) {
+      updateCartInDb(cart, cartIdFromSession);
+    }
+  }, [cart]);
 
   return (
     <div className="App">
-      <ThemeProvider theme={{ colors: COLORS }}>
-        <GlobalStyle />
-        <AppGrid>
-          <Cart
-            cart={cart}
-            handleOpenCart={handleOpenCart}
-            removeItemFromCart={removeItemFromCart}
-            addItemToCart={addItemToCart}
+      {/* <ThemeProvider theme={{ colors: COLORS }}> */}
+      <GlobalStyle />
+      <AppGrid>
+        <Cart
+          cart={cart}
+          handleOpenCart={handleOpenCart}
+          removeItemFromCart={removeItemFromCart}
+          addItemToCart={addItemToCart}
+        />
+        <Header cart={cart} handleOpenCart={handleOpenCart} />
+        <Routes>
+          <Route
+            path="/products"
+            element={
+              <Products products={products} addItemToCart={addItemToCart} />
+            }
           />
-          <Header cart={cart} handleOpenCart={handleOpenCart} />
-          <Routes>
-            <Route
-              path="/products"
-              element={
-                <Products products={products} addItemToCart={addItemToCart} />
-              }
-            />
-            <Route
-              path="products/:id"
-              element={<Product addItemToCart={addItemToCart} />}
-            />
-          </Routes>
-          <Footer />
-        </AppGrid>
-      </ThemeProvider>
+          <Route
+            path="products/:id"
+            element={<Product addItemToCart={addItemToCart} />}
+          />
+          <Route path="/" element={<Home />} />
+        </Routes>
+        <Footer />
+      </AppGrid>
+      {/* </ThemeProvider> */}
     </div>
   );
 };

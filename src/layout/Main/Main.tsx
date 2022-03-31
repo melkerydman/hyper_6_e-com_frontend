@@ -1,6 +1,6 @@
 import { Main as StyledMain } from "./Main.elements";
-const Main = (props: any) => {
-  return <StyledMain>{props.children}</StyledMain>;
+const Main = ({ children }: any): JSX.Element => {
+  return <StyledMain>{children}</StyledMain>;
 };
 
 export default Main;

@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 
 // import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./Styles/Global";
-import { Cart } from "./Components";
 import { Header, Footer } from "./Layout";
 import { AppGrid } from "./Utils";
 import { Home, Products, Product } from "./Pages";
@@ -13,78 +12,14 @@ import {
   getCartFromDb,
   getAllProducts,
 } from "./Services";
-import { ICart, ICartItem, IProduct } from "./Interfaces";
+import { IProduct } from "./Interfaces";
 import { CartContext } from "./Contexts";
 // import { COLORS } from "./constants";
 
 const App = () => {
-  // State and context
-  const { cart, setCart, cartIdFromSession } = useContext(CartContext);
+  const { cart, setCart, cartIdFromSession, addItemToCart } =
+    useContext(CartContext);
   const [products, setProducts] = useState<IProduct[]>([] as IProduct[]);
-
-  //Functions
-  const handleOpenCart = () => {
-    setCart((prev) => ({ ...cart, isShowing: !prev.isShowing }));
-  };
-  const addItemToCart = (clickedItem: IProduct, passedQuantity?: number) => {
-    console.log(cart);
-
-    setCart((prev) => {
-      const itemAlreadyInCart = prev.items.find(
-        (item) => item._id === clickedItem._id
-      );
-
-      // If item doesn't exist in cart, add it
-      if (!itemAlreadyInCart) {
-        return {
-          ...prev,
-          // If specific quantity has been passed increase totalQuantity with that, otherwise increment by one
-          totalQuantity: passedQuantity
-            ? prev.totalQuantity + passedQuantity
-            : prev.totalQuantity + 1,
-          // If specific quantity has been passed increase quantity with that, otherwise increment by one
-          items: [
-            ...prev.items,
-            { ...clickedItem, quantity: passedQuantity ? passedQuantity : 1 },
-          ],
-        };
-      }
-      return {
-        ...prev,
-        totalQuantity: passedQuantity
-          ? prev.totalQuantity + passedQuantity
-          : prev.totalQuantity + 1,
-        items: prev.items.map((item) =>
-          item._id === clickedItem._id && item.quantity
-            ? {
-                ...item,
-                quantity: passedQuantity
-                  ? item.quantity + passedQuantity
-                  : item.quantity + 1,
-              }
-            : item
-        ),
-      };
-    });
-  };
-  const removeItemFromCart = (id: string) => {
-    setCart((prev) => {
-      return {
-        ...prev,
-        totalQuantity: prev.totalQuantity - 1,
-        items: prev.items.reduce((acc, item) => {
-          if (item._id === id) {
-            if (item.quantity === 1) return acc;
-            return [...acc, { ...item, quantity: item.quantity! - 1 }];
-          } else {
-            return [...acc, item];
-          }
-        }, [] as ICartItem[]),
-      };
-    });
-  };
-
-  console.log("cart after reload: ", cart);
 
   useEffect(() => {
     (async () => {
@@ -113,26 +48,18 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    console.log("cart updated");
     // if no cartId stored - add new cart to db
     // if cartId stored - update db with new data
-    if (cartIdFromSession) {
+    if (cartIdFromSession && cart.totalQuantity > 0) {
       updateCartInDb(cart, cartIdFromSession);
     }
   }, [cart]);
 
   return (
     <div className="App">
-      {/* <ThemeProvider theme={{ colors: COLORS }}> */}
       <GlobalStyle />
       <AppGrid>
-        <Cart
-          cart={cart}
-          handleOpenCart={handleOpenCart}
-          removeItemFromCart={removeItemFromCart}
-          addItemToCart={addItemToCart}
-        />
-        <Header cart={cart} handleOpenCart={handleOpenCart} />
+        <Header />
         <Routes>
           <Route
             path="/products"
@@ -148,7 +75,6 @@ const App = () => {
         </Routes>
         <Footer />
       </AppGrid>
-      {/* </ThemeProvider> */}
     </div>
   );
 };

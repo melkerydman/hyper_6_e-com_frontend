@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import {
   Header as StyledHeader,
   Nav,
@@ -7,15 +8,22 @@ import {
   MenuLink,
   CheckoutButton,
 } from "./Header.elements";
-import { HorizontalDivider } from "../../Components";
+import { HorizontalDivider, Cart } from "../../Components";
 import { ICart, IProduct } from "../../Interfaces";
+import { CartContext } from "../../Contexts";
 
-interface IProps {
-  cart: ICart;
-  handleOpenCart: () => void;
-}
+// interface IProps {
+//   cart: ICart;
+//   handleOpenCart: () => void;
+// }
 
-const Header: React.FC<IProps> = ({ cart, handleOpenCart }): JSX.Element => {
+const Header: React.FC = (): JSX.Element => {
+  const { cart, setOpenCart } = useContext(CartContext);
+
+  const handleOpenCart = () => {
+    setOpenCart((prevOpenCart) => !prevOpenCart);
+  };
+
   return (
     <StyledHeader>
       <Nav>
@@ -34,6 +42,7 @@ const Header: React.FC<IProps> = ({ cart, handleOpenCart }): JSX.Element => {
         </CheckoutButton>
       </Nav>
       <HorizontalDivider bottom />
+      <Cart handleOpenCart={handleOpenCart} />
     </StyledHeader>
   );
 };

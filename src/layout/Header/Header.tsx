@@ -9,13 +9,7 @@ import {
   CheckoutButton,
 } from "./Header.elements";
 import { HorizontalDivider, Cart } from "../../Components";
-import { ICart, IProduct } from "../../Interfaces";
 import { CartContext } from "../../Contexts";
-
-// interface IProps {
-//   cart: ICart;
-//   handleOpenCart: () => void;
-// }
 
 const Header: React.FC = (): JSX.Element => {
   const { cart, setOpenCart } = useContext(CartContext);

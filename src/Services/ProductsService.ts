@@ -1,4 +1,4 @@
-import * as config from "../Config/config";
+import * as config from "../Config";
 
 const headers = {
   "content-type": "application/json",

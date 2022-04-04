@@ -15,13 +15,9 @@ import {
 } from "./Product.elements";
 import { Quantity } from "../../Components/";
 import { IProduct } from "../../Interfaces";
-import * as config from "../../Config/config";
+import * as config from "../../Config";
 
-interface IProps {
-  addItemToCart: (clickedItem: IProduct, quantity: number) => void;
-}
-
-const Product: React.FC<IProps> = ({ addItemToCart }): JSX.Element => {
+const Product: React.FC = (): JSX.Element => {
   const params = useParams();
   const [product, setProduct] = useState<IProduct>({} as IProduct);
   const [quantity, setQuantity] = useState<number>(1);
@@ -99,7 +95,6 @@ const Product: React.FC<IProps> = ({ addItemToCart }): JSX.Element => {
               />
               <Button
                 onClick={() => {
-                  addItemToCart(product, quantity);
                   setQuantity(1);
                 }}
               >

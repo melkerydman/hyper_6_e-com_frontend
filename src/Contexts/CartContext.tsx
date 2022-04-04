@@ -1,68 +1,60 @@
-import userEvent from "@testing-library/user-event";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { ICart, ICartItem, IProduct } from "../Interfaces";
-import { getCartFromDb } from "../Services";
+import * as config from "../Config";
 
 const CartContext = createContext<IState>({} as IState);
 
 interface IState {
   cart: ICart;
   setCart: React.Dispatch<React.SetStateAction<ICart>>;
-  cartIdFromSession?: string;
   openCart: boolean;
   setOpenCart: React.Dispatch<React.SetStateAction<boolean>>;
-  addItemToCart: (clickedItem: IProduct) => void;
   removeItemFromCart: Function;
+  addToCart: (clickedItem: IProduct, quantity?: number | undefined) => void;
 }
 
-const cartIdFromSession = sessionStorage.getItem("cartId")?.replaceAll('"', "");
+const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
 
 export const CartProvider = ({ children }: any) => {
   const [openCart, setOpenCart] = useState(false);
-  const [cart, setCart] = useState<ICart>({
-    isShowing: false,
-    items: [] as ICartItem[],
-    totalQuantity: 0,
-  });
+  const [cart, setCart] = useState<ICart>(
+    cartFromLocalStorage.items
+      ? cartFromLocalStorage
+      : { items: [] as ICartItem[], totalQuantity: 0 }
+  );
 
-  const addItemToCart = (clickedItem: IProduct, passedQuantity?: number) => {
-    setCart((prev) => {
-      const itemAlreadyInCart = prev.items.find(
-        (item) => item._id === clickedItem._id
-      );
+  const addToCart = async (clickedItem: IProduct, quantity?: number) => {
+    const data = {
+      userId: localStorage.getItem("randid"),
+      productId: clickedItem._id,
+      quantity: quantity ? quantity : 1,
+    };
 
-      // If item doesn't exist in cart, add it
-      if (!itemAlreadyInCart) {
-        return {
-          ...prev,
-          // If specific quantity has been passed increase totalQuantity with that, otherwise increment by one
-          totalQuantity: passedQuantity
-            ? prev.totalQuantity + passedQuantity
-            : prev.totalQuantity + 1,
-          // If specific quantity has been passed increase quantity with that, otherwise increment by one
-          items: [
-            ...prev.items,
-            { ...clickedItem, quantity: passedQuantity ? passedQuantity : 1 },
-          ],
-        };
-      }
-      return {
-        ...prev,
-        totalQuantity: passedQuantity
-          ? prev.totalQuantity + passedQuantity
-          : prev.totalQuantity + 1,
-        items: prev.items.map((item) =>
-          item._id === clickedItem._id && item.quantity
-            ? {
-                ...item,
-                quantity: passedQuantity
-                  ? item.quantity + passedQuantity
-                  : item.quantity + 1,
-              }
-            : item
-        ),
-      };
-    });
+    console.log(data);
+    console.log("adding data");
+
+    const cartId = await fetch(`${config.API_BASE_URL}/cart`, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "content-type": "application/json" },
+    })
+      .then((res) => res.json())
+      .then((data) => data);
+    const cart = await getCartById(cartId);
+    setCart(cart);
+    console.log("cart: ", cart);
+  };
+
+  const getCartById = async (id: string) => {
+    return await fetch(`${config.API_BASE_URL}/cart/${id}`, {
+      method: "GET",
+      headers: { "content-type": "application/json" },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Content in cart from DB: ", data);
+        return data;
+      });
   };
 
   const removeItemFromCart = (id: string) => {
@@ -87,11 +79,11 @@ export const CartProvider = ({ children }: any) => {
       value={{
         cart,
         setCart,
-        cartIdFromSession,
+        // cartIdFromSession,
         openCart,
         setOpenCart,
-        addItemToCart,
         removeItemFromCart,
+        addToCart,
       }}
     >
       {children}

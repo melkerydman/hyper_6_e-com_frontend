@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+
 import { IProduct } from "../../Interfaces";
 import {
   ProductHeader,
@@ -8,18 +10,17 @@ import {
 } from "./Products.elements";
 import { Button } from "../../Components";
 import { Main } from "../../Layout";
+import { CartContext } from "../../Contexts";
 
 interface IProps {
   products: IProduct[] | undefined;
   // addItemToCart: () => void;
   // addItemToCart: (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
-  addItemToCart: (clickedItem: IProduct) => void;
 }
 
-const Products: React.FC<IProps> = ({
-  products,
-  addItemToCart,
-}): JSX.Element => {
+const Products: React.FC<IProps> = ({ products }): JSX.Element => {
+  const { addToCart } = useContext(CartContext);
+
   return (
     <Main>
       <ProductHeader>
@@ -48,9 +49,7 @@ const Products: React.FC<IProps> = ({
                     <p>£{product.price}</p>
                   </div>
                 </Link>
-                <Button onClick={() => addItemToCart(product)}>
-                  Add to cart
-                </Button>
+                <Button onClick={() => addToCart(product)}>Add to cart</Button>
               </ProductListItem>
             ))
           : "Failed to load products"}

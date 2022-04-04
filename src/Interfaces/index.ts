@@ -1,6 +1,5 @@
 // Interface
 export interface ICart {
-  isShowing: boolean;
   items: ICartItem[];
   totalQuantity: number;
 }

@@ -1,4 +1,4 @@
-import * as config from "../Config/config";
+import * as config from "../Config";
 import { ICart } from "../Interfaces";
 
 export const addCartToDb = (cart: ICart) => {

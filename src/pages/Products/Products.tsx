@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { useCart } from "../../Services";
 
 import { IProduct } from "../../Interfaces";
 import {
@@ -14,12 +15,10 @@ import { CartContext } from "../../Contexts";
 
 interface IProps {
   products: IProduct[] | undefined;
-  // addItemToCart: () => void;
-  // addItemToCart: (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
 }
 
 const Products: React.FC<IProps> = ({ products }): JSX.Element => {
-  const { addToCart } = useContext(CartContext);
+  const { addToCart } = useCart();
 
   return (
     <Main>

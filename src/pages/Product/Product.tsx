@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useCart } from "../../Services/CartService";
 
 import { VerticalDivider, HorizontalDivider, Button } from "../../Components";
 import { Main } from "../../Layout";
@@ -18,10 +19,10 @@ import { IProduct } from "../../Interfaces";
 import * as config from "../../Config";
 
 const Product: React.FC = (): JSX.Element => {
+  const { addToCart } = useCart();
   const params = useParams();
   const [product, setProduct] = useState<IProduct>({} as IProduct);
   const [quantity, setQuantity] = useState<number>(1);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch(`${config.API_BASE_URL}/products/${params.id}`, {
@@ -37,10 +38,9 @@ const Product: React.FC = (): JSX.Element => {
       })
       .then((json) => {
         setProduct(json);
-        setError(null);
       })
       .catch((err) => {
-        setError(err.message);
+        console.error(err.message);
       });
   }, [params.id]);
 
@@ -94,9 +94,10 @@ const Product: React.FC = (): JSX.Element => {
                 handleIncreaseQuantity={handleIncreaseQuantity}
               />
               <Button
-                onClick={() => {
-                  setQuantity(1);
-                }}
+                // onClick={() => {
+                //   setQuantity(1);
+                // }}
+                onClick={() => addToCart(product, quantity)}
               >
                 Add to cart
               </Button>

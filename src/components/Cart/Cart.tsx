@@ -2,14 +2,15 @@ import { useContext } from "react";
 import { StyledCart, CartHeader, CartList, CartListItem } from "./Cart.styled";
 import { VerticalDivider, HorizontalDivider, Button } from "../../Components";
 import { CartContext, ProductContext } from "../../Contexts";
+import { useCart } from "../../Services/CartService";
 
 interface IProps {
   handleOpenCart: () => void;
 }
 
 const Cart: React.FC<IProps> = ({ handleOpenCart }): JSX.Element => {
-  const { cart, openCart, addToCart, removeItemFromCart } =
-    useContext(CartContext);
+  const { cart, openCart } = useContext(CartContext);
+  const { addToCart, removeItemFromCart } = useCart();
   const { products } = useContext(ProductContext);
 
   return (

@@ -2,6 +2,7 @@
 export interface ICart {
   items: ICartItem[];
   totalQuantity: number;
+  totalPrice: number;
 }
 
 export interface ICartItem extends IProduct {

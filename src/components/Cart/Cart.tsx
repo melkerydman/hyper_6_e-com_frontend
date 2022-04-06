@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { StyledCart, CartHeader, CartList, CartListItem } from "./Cart.styled";
 import { VerticalDivider, HorizontalDivider, Button } from "../../Components";
 import { CartContext, ProductContext } from "../../Contexts";
-import { useCart } from "../../Services/CartService";
+import { useCart } from "../../Hooks";
 
 interface IProps {
   handleOpenCart: () => void;
@@ -47,6 +47,9 @@ const Cart: React.FC<IProps> = ({ handleOpenCart }): JSX.Element => {
                   <div>{item.quantity}</div>
                   <button onClick={() => addToCart(item)}>+</button>
                 </div>
+                <button onClick={() => removeItemFromCart(item._id, true)}>
+                  Remove
+                </button>
               </CartListItem>
             );
           })
@@ -54,7 +57,8 @@ const Cart: React.FC<IProps> = ({ handleOpenCart }): JSX.Element => {
           <></>
         )}
       </CartList>
-      <h2>Subtotal</h2>
+      <h2>Subtotal:</h2>
+      <p>£{cart.totalPrice || 0}</p>
       <Button>Checkout</Button>
     </StyledCart>
   );

@@ -1,6 +1,5 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { useCart } from "../../Services";
+import { useCart } from "../../Hooks";
 
 import { IProduct } from "../../Interfaces";
 import {
@@ -11,7 +10,6 @@ import {
 } from "./Products.elements";
 import { Button } from "../../Components";
 import { Main } from "../../Layout";
-import { CartContext } from "../../Contexts";
 
 interface IProps {
   products: IProduct[] | undefined;

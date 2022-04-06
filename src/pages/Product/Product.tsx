@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useCart } from "../../Services/CartService";
+import { useCart, useProducts } from "../../Hooks";
 
 import { VerticalDivider, HorizontalDivider, Button } from "../../Components";
 import { Main } from "../../Layout";
@@ -16,32 +16,19 @@ import {
 } from "./Product.elements";
 import { Quantity } from "../../Components/";
 import { IProduct } from "../../Interfaces";
-import * as config from "../../Config";
 
 const Product: React.FC = (): JSX.Element => {
   const { addToCart } = useCart();
+  const { getProductById } = useProducts();
   const params = useParams();
   const [product, setProduct] = useState<IProduct>({} as IProduct);
   const [quantity, setQuantity] = useState<number>(1);
 
   useEffect(() => {
-    fetch(`${config.API_BASE_URL}/products/${params.id}`, {
-      headers: { "content-type": "application/json" },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          console.log(response.status);
-          throw Error(response.status.toString());
-        } else {
-          return response.json();
-        }
-      })
-      .then((json) => {
-        setProduct(json);
-      })
-      .catch((err) => {
-        console.error(err.message);
-      });
+    if (!params.id) return;
+    getProductById(params.id)
+      .then((product) => setProduct(product))
+      .catch((err) => console.error(err.message));
   }, [params.id]);
 
   const handleReduceQuantity = () => {

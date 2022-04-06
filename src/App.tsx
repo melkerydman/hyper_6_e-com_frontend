@@ -6,13 +6,14 @@ import GlobalStyle from "./Styles/Global";
 import { Header, Footer } from "./Layout";
 import { AppGrid } from "./Utils";
 import { Home, Products, Product } from "./Pages";
-import { getAllProducts } from "./Services";
+import { useProducts } from "./Hooks";
 import { CartContext, ProductContext } from "./Contexts";
 // import { COLORS } from "./constants";
 
 const App = () => {
   const { cart } = useContext(CartContext);
   const { products, setProducts } = useContext(ProductContext);
+  const { getAllProducts } = useProducts();
 
   useEffect(() => {
     (async () => {
@@ -30,11 +31,6 @@ const App = () => {
     <div className="App">
       <GlobalStyle />
       <AppGrid>
-        {/* <button
-          onClick={() => {
-            addToCart(products[0]._id, 3);
-          }}
-        ></button> */}
         <Header />
         <Routes>
           <Route path="/products" element={<Products products={products} />} />

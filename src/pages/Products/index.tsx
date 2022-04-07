@@ -7,7 +7,7 @@ import {
   ProductList,
   ProductListItem,
   ImageWrapper,
-} from "./Products.elements";
+} from "./styled";
 import { Button } from "../../Components";
 import { Main } from "../../Layout";
 

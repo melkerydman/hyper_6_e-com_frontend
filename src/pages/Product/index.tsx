@@ -13,8 +13,8 @@ import {
   Detail,
   Action,
   MoreProducts,
-} from "./Product.elements";
-import { Quantity } from "../../Components/";
+} from "./styled";
+import { Quantity } from "../../Components";
 import { IProduct } from "../../Interfaces";
 
 const Product: React.FC = (): JSX.Element => {
@@ -38,8 +38,6 @@ const Product: React.FC = (): JSX.Element => {
   };
   const handleIncreaseQuantity = () => {
     setQuantity((prev) => {
-      console.log("prev: ", prev);
-      console.log("items in stock: ", product.inStock);
       return prev < product.inStock ? prev + 1 : prev;
     });
   };
@@ -80,12 +78,7 @@ const Product: React.FC = (): JSX.Element => {
                 handleReduceQuantity={handleReduceQuantity}
                 handleIncreaseQuantity={handleIncreaseQuantity}
               />
-              <Button
-                // onClick={() => {
-                //   setQuantity(1);
-                // }}
-                onClick={() => addToCart(product, quantity)}
-              >
+              <Button onClick={() => addToCart(product, quantity)}>
                 Add to cart
               </Button>
             </Action>

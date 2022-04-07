@@ -33,6 +33,14 @@ const App = () => {
       <AppGrid>
         <Header />
         <Routes>
+          <Route
+            path="/checkout/success"
+            element={
+              <>
+                <h2>Order successful!</h2>
+              </>
+            }
+          />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/products" element={<Products products={products} />} />
           <Route path="products/:id" element={<Product />} />

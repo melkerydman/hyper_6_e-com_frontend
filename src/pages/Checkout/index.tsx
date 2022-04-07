@@ -28,7 +28,7 @@ const Checkout = (): JSX.Element => {
     setLastName("");
     setPostalCode("");
     setCart({ items: [] as ICartItem[], totalQuantity: 0, totalPrice: 0 });
-    navigate("/success");
+    navigate("./success");
   };
   return (
     <Main>

@@ -1,22 +1,41 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 type CartType = {
   isShowing?: boolean;
 };
 
-export const StyledCart = styled.section<CartType>`
+const fadeBackground = keyframes`
+ 0% { background-color: rgba(23,23,23, 0); }
+ 100% { background-color: rgba(23,23,23, 0.5);}
+`;
+
+const slideIn = keyframes`
+ 0% { transform: translateX(100%) }
+ 100% {  transform: translateX(0%);}
+`;
+
+export const CartWrapper = styled.section<CartType>`
+  display: grid;
   position: fixed;
   z-index: 99;
   top: 0;
   right: 0;
   height: 100vh;
-  width: calc(50% + 1px);
+  width: 100vw;
+  grid-template-areas: ". . . . . . . cart";
+  animation-name: ${fadeBackground};
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+`;
+export const StyledCart = styled.div`
+  height: 100%;
+  grid-area: cart;
   background: var(--color-light);
-
-  transform: ${({ isShowing }) =>
-    isShowing ? "translateX(0%)" : "translateX(100%)"};
-  transition: all 0.3s ease-in;
-  overflow: scroll;
+  animation-name: ${slideIn};
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
 `;
 
 export const CartHeader = styled.header`
@@ -32,13 +51,10 @@ export const CartHeader = styled.header`
   font-size: var(--h3);
 `;
 
-// export const CartList = styled.ul`
-//   display: grid;
-//   grid-template-rows: auto;
-//   gap: 1rem;
-// `;
+export const MenuButton = styled.button`
+  background: transparent;
+  border: none;
+  font-size: var(--h3);
 
-// export const CartListItem = styled.li`
-//   position: relative;
-//   padding: 1rem;
-// `;
+  cursor: pointer;
+`;

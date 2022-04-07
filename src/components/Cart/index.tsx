@@ -1,9 +1,10 @@
 import { useContext } from "react";
-import { StyledCart, CartHeader } from "./Cart.styled";
+import { StyledCart, CartHeader } from "./styled";
 
-import { VerticalDivider, HorizontalDivider, Button } from "../../Components";
-import { CartContext } from "../../Contexts";
+import { VerticalDivider, HorizontalDivider, Button } from "..";
+import { CartContext, ProductContext } from "../../Contexts";
 import CartItems from "../CartItems";
+import { Link } from "react-router-dom";
 
 interface IProps {
   handleOpenCart: () => void;
@@ -11,6 +12,7 @@ interface IProps {
 
 const Cart: React.FC<IProps> = ({ handleOpenCart }): JSX.Element => {
   const { cart, openCart } = useContext(CartContext);
+  const { products } = useContext(ProductContext);
 
   return (
     <StyledCart isShowing={openCart}>
@@ -26,10 +28,18 @@ const Cart: React.FC<IProps> = ({ handleOpenCart }): JSX.Element => {
         </div>
         <HorizontalDivider bottom />
       </CartHeader>
-      <CartItems />
+      <CartItems cart={cart} products={products} />
       <h2>Subtotal:</h2>
       <p>£{cart.totalPrice || 0}</p>
-      <Button>Checkout</Button>
+      <Link to="/checkout">
+        <Button
+          onClick={() => {
+            handleOpenCart();
+          }}
+        >
+          Checkout
+        </Button>
+      </Link>
     </StyledCart>
   );
 };

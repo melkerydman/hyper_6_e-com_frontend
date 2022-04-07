@@ -17,7 +17,7 @@ export const CartProvider = ({ children }: any) => {
   const [cart, setCart] = useState<ICart>(
     cartFromLocalStorage.items
       ? cartFromLocalStorage
-      : { items: [] as ICartItem[], totalQuantity: 0 }
+      : { items: [] as ICartItem[], totalQuantity: 0, totalPrice: 0 }
   );
 
   return (

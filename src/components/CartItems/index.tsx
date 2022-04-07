@@ -2,11 +2,17 @@ import { useContext } from "react";
 import { CartContext, ProductContext } from "../../Contexts/";
 import { useCart } from "../../Hooks";
 import { CartItem, StyledCartItems } from "./styled";
+import { IProduct, ICart } from "../../Interfaces";
 
-const CartItems: React.FC = (): JSX.Element => {
-  const { cart } = useContext(CartContext);
+interface IProps {
+  cart: ICart;
+  products: IProduct[];
+}
+
+const CartItems: React.FC<IProps> = ({ cart, products }): JSX.Element => {
+  // const { cart } = useContext(CartContext);
   const { addToCart, removeItemFromCart } = useCart();
-  const { products } = useContext(ProductContext);
+  // const { products } = useContext(ProductContext);
 
   return (
     <StyledCartItems>

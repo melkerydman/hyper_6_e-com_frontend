@@ -32,13 +32,13 @@ export const CartHeader = styled.header`
   font-size: var(--h3);
 `;
 
-export const CartList = styled.ul`
-  display: grid;
-  grid-template-rows: auto;
-  gap: 1rem;
-`;
+// export const CartList = styled.ul`
+//   display: grid;
+//   grid-template-rows: auto;
+//   gap: 1rem;
+// `;
 
-export const CartListItem = styled.li`
-  position: relative;
-  padding: 1rem;
-`;
+// export const CartListItem = styled.li`
+//   position: relative;
+//   padding: 1rem;
+// `;

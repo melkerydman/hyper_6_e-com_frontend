@@ -9,4 +9,6 @@ export const StyledCartItems = styled.ul`
 export const CartItem = styled.li`
   position: relative;
   padding: 1rem;
+  display: grid;
+  grid-template-columns: 150px 1fr;
 `;

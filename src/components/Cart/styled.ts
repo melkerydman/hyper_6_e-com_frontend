@@ -36,6 +36,8 @@ export const StyledCart = styled.div`
   animation-duration: 0.5s;
   animation-timing-function: ease-in;
   animation-fill-mode: forwards;
+
+  overflow: scroll;
 `;
 
 export const CartHeader = styled.header`

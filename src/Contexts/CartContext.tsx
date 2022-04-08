@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { ICart, ICartItem } from "../Interfaces";
 
 const CartContext = createContext<IState>({} as IState);
@@ -19,6 +19,12 @@ export const CartProvider = ({ children }: any) => {
       ? cartFromLocalStorage
       : { items: [] as ICartItem[], totalQuantity: 0, totalPrice: 0 }
   );
+
+  useEffect(() => {
+    openCart
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "unset");
+  }, [openCart]);
 
   return (
     <CartContext.Provider

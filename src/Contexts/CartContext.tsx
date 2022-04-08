@@ -20,12 +20,6 @@ export const CartProvider = ({ children }: any) => {
       : { items: [] as ICartItem[], totalQuantity: 0, totalPrice: 0 }
   );
 
-  useEffect(() => {
-    openCart
-      ? (document.body.style.overflow = "hidden")
-      : (document.body.style.overflow = "unset");
-  }, [openCart]);
-
   return (
     <CartContext.Provider
       value={{

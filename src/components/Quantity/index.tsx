@@ -1,48 +1,45 @@
-import styled from "styled-components";
-
-const StyledQuantity = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 0.5rem 0.8rem;
-
-  border: 1px solid var(--color-grey);
-
-  :hover {
-    border: 1px solid var(--color-dark);
-  }
-`;
-
-const Button = styled.button`
-  background: none;
-  color: none;
-  border: none;
-  padding: none;
-  font: inherit;
-  cursor: pointer;
-`;
+import { useCart } from "../../Hooks";
+import { ICartItem } from "../../Interfaces";
+import { StyledQuantity, Button } from "./styled";
 
 interface IProps {
-  quantity: number;
-  handleReduceQuantity: () => void;
-  handleIncreaseQuantity: () => void;
+  item?: ICartItem;
+  quantity?: number;
+  handleReduceQuantity?: () => void;
+  handleIncreaseQuantity?: () => void;
+  small?: boolean;
 }
 
 const Quantity: React.FC<IProps> = ({
+  item,
   quantity,
   handleReduceQuantity,
   handleIncreaseQuantity,
+  small,
 }): JSX.Element => {
-  return (
-    <StyledQuantity>
+  const { addToCart, removeItemFromCart } = useCart();
+
+  return item ? (
+    <StyledQuantity small={small}>
       <Button
         onClick={() => {
-          handleReduceQuantity();
+          removeItemFromCart(item._id);
         }}
       >
         -
       </Button>
+      {item.quantity}
+      <Button
+        onClick={() => {
+          addToCart(item);
+        }}
+      >
+        +
+      </Button>
+    </StyledQuantity>
+  ) : (
+    <StyledQuantity small={small}>
+      <Button onClick={handleReduceQuantity}>-</Button>
       {quantity}
       <Button onClick={handleIncreaseQuantity}>+</Button>
     </StyledQuantity>

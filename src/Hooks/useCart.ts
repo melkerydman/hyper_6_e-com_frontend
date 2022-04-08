@@ -14,6 +14,7 @@ export const useCart = () => {
       title: clickedItem.title,
       price: clickedItem.price,
     };
+    console.log(data);
 
     const cartId = await fetch(`${config.API_BASE_URL}/cart`, {
       method: "POST",
@@ -53,25 +54,7 @@ export const useCart = () => {
       .then((data) => data);
     const cart = await getCartById(cartId);
     setCart(cart);
-    // const cart = await getCartById(cartId);
-    // setCart(cart);
   };
-  // const removeItemFromCart = (id: string, clear?: boolean) => {
-  //   setCart((prev) => {
-  //     return {
-  //       ...prev,
-  //       totalQuantity: prev.totalQuantity - 1,
-  //       items: prev.items.reduce((acc, item) => {
-  //         if (item._id === id) {
-  //           if (item.quantity === 1) return acc;
-  //           return [...acc, { ...item, quantity: item.quantity! - 1 }];
-  //         } else {
-  //           return [...acc, item];
-  //         }
-  //       }, [] as ICartItem[]),
-  //     };
-  //   });
-  // };
 
   const emptyCart = () => {};
 

@@ -3,6 +3,7 @@ import { CartContext, ProductContext } from "../../Contexts/";
 import { useCart } from "../../Hooks";
 import { CartItem, StyledCartItems } from "./styled";
 import { IProduct, ICart } from "../../Interfaces";
+import { Quantity } from "../../Components";
 
 interface IProps {
   cart: ICart;
@@ -26,11 +27,10 @@ const CartItems: React.FC<IProps> = ({ cart, products }): JSX.Element => {
               <p>{product ? product.title : "Unknown"}</p>
               <p>{product ? product.artist : "Unknown"}</p>
               <p>£{product ? product.price : "Unknown"}</p>
-              <div>
-                <button onClick={() => removeItemFromCart(item._id)}>-</button>
-                <div>{item.quantity}</div>
-                <button onClick={() => addToCart(item)}>+</button>
-              </div>
+              {/* <div> */}
+              <Quantity item={item} small></Quantity>
+
+              {/* </div> */}
               <button onClick={() => removeItemFromCart(item._id, true)}>
                 Remove
               </button>

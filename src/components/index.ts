@@ -1,5 +1,5 @@
-export { HorizontalDivider, VerticalDivider } from "./Divider/Divider.styled";
-export { Button } from "./Button/Button.elements";
+export { HorizontalDivider, VerticalDivider } from "./Divider";
+export { Button } from "./Button";
 export { default as Quantity } from "./Quantity";
 export { default as Cart } from "./Cart";
 export { default as CartItems } from "./CartItems";

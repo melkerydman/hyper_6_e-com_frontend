@@ -40,6 +40,9 @@ export default createGlobalStyle`
   --color-dark: #171717;
 }
 
+.App {
+  height: 100vh;
+}
 html,
 body,
 div,

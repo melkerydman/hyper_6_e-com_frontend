@@ -11,7 +11,7 @@ import { CartContext, ProductContext } from "./Contexts";
 // import { COLORS } from "./constants";
 
 const App = () => {
-  const { cart } = useContext(CartContext);
+  const { cart, openCart } = useContext(CartContext);
   const { products, setProducts } = useContext(ProductContext);
   const { getAllProducts } = useProducts();
 
@@ -28,7 +28,10 @@ const App = () => {
   }, [cart]);
 
   return (
-    <div className="App">
+    <div
+      className="App"
+      style={openCart ? { overflow: "hidden" } : { overflow: "unset" }}
+    >
       <GlobalStyle />
       <AppGrid>
         <Header />

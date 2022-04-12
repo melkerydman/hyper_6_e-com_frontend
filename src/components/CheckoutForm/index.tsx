@@ -1,4 +1,4 @@
-import { Button } from "../Button/Button.elements";
+import { Button } from "../Button";
 
 const CheckoutForm: React.FC = (): JSX.Element => {
   return (

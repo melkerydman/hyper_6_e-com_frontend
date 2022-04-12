@@ -1,5 +1,5 @@
 import { VerticalDivider, HorizontalDivider } from "../../Components";
-import { Footer as StyledFooter, FooterContent } from "./Footer.elements";
+import { Footer as StyledFooter, FooterContent } from "./styled";
 
 const Footer = () => {
   return (

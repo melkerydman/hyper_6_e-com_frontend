@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import { CartContext, ProductContext } from "../../Contexts/";
 import { useCart } from "../../Hooks";
-import { CartItem, StyledCartItems } from "./styled";
+import { CartItem, ProductInfo, StyledCartItems } from "./styled";
 import { IProduct, ICart } from "../../Interfaces";
 import { Quantity, Image } from "../../Components";
+import { Link } from "react-router-dom";
 
 interface IProps {
   cart: ICart;
@@ -24,19 +23,24 @@ const CartItems: React.FC<IProps> = ({ cart, products }): JSX.Element => {
           if (!product) return null;
           return (
             <CartItem key={item._id}>
-              <Image product={product} index={index} />
-              <div>
-                <p>{product ? product.title : "Unknown"}</p>
-                <p>{product ? product.artist : "Unknown"}</p>
-                <p>£{product ? product.price : "Unknown"}</p>
-                {/* <div> */}
-                <Quantity item={item} small></Quantity>
-
-                {/* </div> */}
-                <button onClick={() => removeItemFromCart(item._id, true)}>
-                  Remove
-                </button>
-              </div>
+              <Link to={`/products/${product._id}`}>
+                <Image product={product} index={index} />
+              </Link>
+              <ProductInfo>
+                <div>
+                  <Link to={`/products/${product._id}`}>
+                    <p>{product ? product.title : "Unknown"}</p>
+                    <p>{product ? product.artist : "Unknown"}</p>
+                  </Link>
+                  <Quantity item={item} small></Quantity>
+                </div>
+                <div>
+                  <p>£{product ? product.price : "Unknown"}</p>
+                  <button onClick={() => removeItemFromCart(item._id, true)}>
+                    Remove
+                  </button>
+                </div>
+              </ProductInfo>
             </CartItem>
           );
         })

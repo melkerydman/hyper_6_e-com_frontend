@@ -7,7 +7,7 @@ import {
   MenuItem,
   MenuLink,
   CheckoutButton,
-} from "./Header.elements";
+} from "./styled";
 import { HorizontalDivider, Cart } from "../../Components";
 import { CartContext } from "../../Contexts";
 

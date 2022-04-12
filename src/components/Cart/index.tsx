@@ -11,12 +11,20 @@ interface IProps {
 }
 
 const Cart: React.FC<IProps> = ({ handleOpenCart }): JSX.Element => {
-  const { cart, openCart } = useContext(CartContext);
+  const { cart, openCart, setOpenCart } = useContext(CartContext);
   const { products } = useContext(ProductContext);
 
   return openCart ? (
     // <CartWrapper isShowing={openCart}>
-    <CartWrapper isShowing={openCart}>
+    <CartWrapper
+      isShowing={openCart}
+      onClick={(e) => {
+        // If target clicked is specifically CartWrapper, not a child, close modal
+        if (e.currentTarget === e.target) {
+          setOpenCart(false);
+        }
+      }}
+    >
       <StyledCart>
         <VerticalDivider />
         <CartHeader>

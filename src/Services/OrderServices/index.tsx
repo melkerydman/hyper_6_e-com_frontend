@@ -11,6 +11,11 @@ export const createOrder = async (formData: any, cart: any) => {
   return await response.json();
 };
 
+export const getAllOrders = async () => {
+  const response = await fetch(`${config.API_BASE_URL}/orders`);
+  return await response.json();
+};
+
 // const addToCart = async (clickedItem: IProduct, quantity?: number) => {
 //   const data = {
 //     userId: localStorage.getItem("randid"),

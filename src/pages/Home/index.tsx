@@ -1,6 +1,6 @@
 import { Main } from "../../Layout";
 
-const Home = ({ children }: any): JSX.Element => {
+const Home: React.FC = ({ children }: any): JSX.Element => {
   return <Main>{children}</Main>;
 };
 

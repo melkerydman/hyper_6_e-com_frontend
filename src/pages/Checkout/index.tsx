@@ -1,14 +1,13 @@
-import { CartItems, CheckoutForm } from "../../Components";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Main } from "../../Layout";
 import { Wrapper } from "./styled";
 import { CartContext, ProductContext } from "../../Contexts/";
-import { useContext, useState } from "react";
-import { Button } from "../../Components";
+import { Button, CartItems } from "../../Components";
 import { createOrder } from "../../Services";
 import { ICartItem } from "../../Interfaces";
-import { useNavigate } from "react-router-dom";
 
-const Checkout = (): JSX.Element => {
+const Checkout: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
   const { cart, setCart } = useContext(CartContext);
   const { products } = useContext(ProductContext);

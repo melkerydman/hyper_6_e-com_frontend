@@ -1,2 +1,2 @@
-export { Grid, AppGrid } from "./Grid/Grid.styled";
-export { Wrapper } from "./Wrapper/Wrapper.styled";
+export { Grid, AppGrid } from "./Grid";
+export { Wrapper } from "./Wrapper";

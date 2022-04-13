@@ -21,3 +21,10 @@ export interface IProduct {
   details: string;
   inStock: number;
 }
+export interface IOrder {
+  _id: string;
+  items: [ICart];
+  amount: number;
+  userInfo: {};
+  orderStatus: { packed: boolean; dispatched: boolean };
+}

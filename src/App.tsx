@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import GlobalStyle from "./Styles/Global";
 import { Header, Footer } from "./Layout";
 import { AppGrid } from "./Utils";
-import { Home, Products, Product, Checkout } from "./Pages";
+import { Home, Products, Product, Checkout, AdminPanel } from "./Pages";
 import { useProducts } from "./Hooks";
 import { CartContext, ProductContext } from "./Contexts";
 // import { COLORS } from "./constants";
@@ -47,6 +47,7 @@ const App = () => {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/products" element={<Products products={products} />} />
           <Route path="products/:id" element={<Product />} />
+          <Route path="admin" element={<AdminPanel />} />
           <Route path="/" element={<Home />} />
         </Routes>
         <Footer />

@@ -3,6 +3,18 @@ import { COLORS } from "../constants";
 
 export default createGlobalStyle`
 
+@font-face {
+  font-family: Kaensla;
+  src: url(/Users/melkerrydman/Library/Fonts/Kaensla-Regular.otf);
+}
+@font-face {
+  font-family: Kolligio;
+  src: url(/Users/melkerrydman/Library/Fonts/Kolligio.otf);
+}
+@font-face {
+  font-family: "Blue Ocean";
+  src: url("/Users/melkerrydman/Library/Fonts/BLUE OCEAN ITALIC.otf");
+}
 :root {
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
   font-family: 'Inter', sans-serif;
@@ -169,6 +181,7 @@ picture {
 
 a {
 	text-decoration: none;
+  color: var(--color-dark)
 }
 /* Inherit fonts for inputs and buttons */
 input,

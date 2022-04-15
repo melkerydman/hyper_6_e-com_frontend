@@ -21,10 +21,10 @@ const Header: React.FC = (): JSX.Element => {
   return (
     <StyledHeader>
       <Nav>
-        <Logo to={"/"}>Name</Logo>
+        <Logo to={"/"}>Shooting Season</Logo>
         <Menu>
           <MenuItem>
-            <MenuLink to={"/products"}>Shop</MenuLink>
+            <MenuLink to={"/products"}>Prints</MenuLink>
           </MenuItem>
         </Menu>
         <CheckoutButton

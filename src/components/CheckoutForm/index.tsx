@@ -1,5 +1,16 @@
 import { Button } from "../Button";
 
+// FORM FIELDS
+// First name
+// Last name
+// Country
+// Street
+
+// City
+// Postcode
+// Phone
+// Email
+
 const CheckoutForm: React.FC = (): JSX.Element => {
   return (
     <form>
@@ -20,13 +31,43 @@ const CheckoutForm: React.FC = (): JSX.Element => {
         />
         <input
           type="text"
+          name="country"
+          id="country"
+          placeholder="Country"
+          required
+        />
+        <input
+          type="text"
+          name="street"
+          id="street"
+          placeholder="Street"
+          required
+        />
+      </div>
+      <div>
+        <input type="text" name="city" id="city" placeholder="City" required />
+        <input
+          type="text"
           name="postalCode"
           id="postalCode"
           placeholder="Postal Code"
           required
         />
+        <input
+          type="tel"
+          name="phone"
+          id="phone"
+          placeholder="Phone"
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Email"
+          required
+        />
       </div>
-      <div></div>
       <Button>Place order</Button>
     </form>
   );

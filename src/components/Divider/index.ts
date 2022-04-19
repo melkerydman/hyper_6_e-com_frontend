@@ -17,14 +17,16 @@ export const HorizontalDivider = styled.div<HorizontalType>`
   position: absolute;
 
   width: 100%;
-  height: 1px;
+  height: 2px;
   background: #171717;
+  opacity: 0.2;
 `;
 
 export const VerticalDivider = styled.div<VerticalType>`
   background: #171717;
+  opacity: 0.2;
   height: 100%;
-  width: 1px;
+  width: 2px;
 
   position: absolute;
   top: 0;

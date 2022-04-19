@@ -12,10 +12,16 @@ const Footer = () => {
           <h3>Shooting Season</h3>
           <div style={{ flex: "1" }}>
             <h4>Shooting Season</h4>
-
-            <Link to="/admin" style={{ textIndent: "0" }}>
-              Admin
-            </Link>
+            <div>
+              <Link to="/products" style={{ textIndent: "0" }}>
+                Prints
+              </Link>
+            </div>
+            <div>
+              <Link to="/admin" style={{ textIndent: "0" }}>
+                Admin
+              </Link>
+            </div>
           </div>
           <div style={{ flex: "1" }}>
             <h4>Contact</h4>

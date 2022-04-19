@@ -1,5 +1,12 @@
 import { useContext } from "react";
-import { CartWrapper, StyledCart, CartHeader, MenuButton } from "./styled";
+import {
+  CartWrapper,
+  StyledCart,
+  CartHeader,
+  MenuButton,
+  CartFooter,
+  SubTotal,
+} from "./styled";
 
 import { VerticalDivider, HorizontalDivider, Button } from "../../Components";
 import { CartContext, ProductContext } from "../../Contexts";
@@ -38,18 +45,27 @@ const Cart: React.FC<IProps> = ({ handleOpenCart }): JSX.Element => {
           </MenuButton>
           <HorizontalDivider bottom />
         </CartHeader>
-        <CartItems cart={cart} products={products} />
-        <h2>Subtotal:</h2>
-        <p>£{cart.totalPrice || 0}</p>
-        <Link to="/checkout">
-          <Button
-            onClick={() => {
-              handleOpenCart();
-            }}
-          >
-            Checkout
-          </Button>
-        </Link>
+        {cart.items.length > 0 ? (
+          <>
+            <CartItems cart={cart} products={products} />
+            <CartFooter>
+              <SubTotal>
+                <h2>Subtotal</h2>£{cart.totalPrice || 0}
+              </SubTotal>
+              <Link to="/checkout">
+                <Button
+                  onClick={() => {
+                    handleOpenCart();
+                  }}
+                >
+                  Checkout
+                </Button>
+              </Link>
+            </CartFooter>
+          </>
+        ) : (
+          <div>Your cart is empty</div>
+        )}
       </StyledCart>
     </CartWrapper>
   ) : (

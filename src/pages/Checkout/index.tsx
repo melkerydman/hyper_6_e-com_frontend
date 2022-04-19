@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Main } from "../../Layout";
 import { Wrapper } from "./styled";
 import { CartContext, ProductContext } from "../../Contexts/";
-import { Button, CartItems } from "../../Components";
+import { Button, CartItems, CheckoutForm } from "../../Components";
 import { createOrder } from "../../Services";
 import { ICartItem } from "../../Interfaces";
 
@@ -14,6 +14,8 @@ const Checkout: React.FC = (): JSX.Element => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [postalCode, setPostalCode] = useState("");
+
+  // const [formData, setFormData] = useState({firstName: "", lastName: "", country: "", street: "", city: "", postalCode: "", phone: "", email: ""})
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -66,6 +68,7 @@ const Checkout: React.FC = (): JSX.Element => {
           <Button>Place order</Button>
         </form>
         <CartItems cart={cart} products={products}></CartItems>
+        {/* <CheckoutForm handleSubmit={handleSubmit}></CheckoutForm> */}
       </Wrapper>
     </Main>
   );

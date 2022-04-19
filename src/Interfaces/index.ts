@@ -28,3 +28,14 @@ export interface IOrder {
   userInfo: {};
   orderStatus: { packed: boolean; dispatched: boolean };
 }
+
+export interface ICheckoutForm {
+  firstName: string;
+  lastName: string;
+  country: string;
+  street: string;
+  city: string;
+  postalCode: string;
+  phone: string;
+  email: string;
+}

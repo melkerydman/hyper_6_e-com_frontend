@@ -37,6 +37,11 @@ export const StyledCart = styled.div`
   animation-timing-function: ease-in;
   animation-fill-mode: forwards;
 
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  position: relative;
+  height: 100vh;
+
   overflow: scroll;
 `;
 
@@ -59,4 +64,19 @@ export const MenuButton = styled.button`
   font-size: var(--h3);
 
   cursor: pointer;
+`;
+
+export const CartFooter = styled.footer`
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+`;
+
+export const SubTotal = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 `;

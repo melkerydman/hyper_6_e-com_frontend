@@ -1,25 +1,38 @@
+import { useContext } from "react";
+import { CheckoutContext } from "../../Contexts";
 import { Button } from "../Button";
+import { StyledForm } from "./styled";
 
-// FORM FIELDS
-// First name
-// Last name
-// Country
-// Street
+interface IProps {
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
+}
 
-// City
-// Postcode
-// Phone
-// Email
-
-const CheckoutForm: React.FC = (): JSX.Element => {
+const CheckoutForm: React.FC<IProps> = ({
+  handleChange,
+  handleSubmit,
+}): JSX.Element => {
+  const { formData } = useContext(CheckoutContext);
+  const {
+    firstName,
+    lastName,
+    country,
+    street,
+    city,
+    postalCode,
+    phone,
+    email,
+  } = formData;
   return (
-    <form>
+    <StyledForm onSubmit={handleSubmit}>
       <div>
         <input
           type="name"
           name="firstName"
           id="firstName"
           placeholder="First name"
+          value={firstName}
+          onChange={handleChange}
           required
         />
         <input
@@ -27,6 +40,8 @@ const CheckoutForm: React.FC = (): JSX.Element => {
           name="lastName"
           id="lastName"
           placeholder="Last name"
+          value={lastName}
+          onChange={handleChange}
           required
         />
         <input
@@ -34,6 +49,8 @@ const CheckoutForm: React.FC = (): JSX.Element => {
           name="country"
           id="country"
           placeholder="Country"
+          value={country}
+          onChange={handleChange}
           required
         />
         <input
@@ -41,16 +58,28 @@ const CheckoutForm: React.FC = (): JSX.Element => {
           name="street"
           id="street"
           placeholder="Street"
+          value={street}
+          onChange={handleChange}
           required
         />
       </div>
       <div>
-        <input type="text" name="city" id="city" placeholder="City" required />
+        <input
+          type="text"
+          name="city"
+          id="city"
+          placeholder="City"
+          value={city}
+          onChange={handleChange}
+          required
+        />
         <input
           type="text"
           name="postalCode"
           id="postalCode"
           placeholder="Postal Code"
+          value={postalCode}
+          onChange={handleChange}
           required
         />
         <input
@@ -58,6 +87,8 @@ const CheckoutForm: React.FC = (): JSX.Element => {
           name="phone"
           id="phone"
           placeholder="Phone"
+          value={phone}
+          onChange={handleChange}
           required
         />
         <input
@@ -65,11 +96,13 @@ const CheckoutForm: React.FC = (): JSX.Element => {
           name="email"
           id="email"
           placeholder="Email"
+          value={email}
+          onChange={handleChange}
           required
         />
       </div>
       <Button>Place order</Button>
-    </form>
+    </StyledForm>
   );
 };
 

@@ -7,7 +7,7 @@ import { Header, Footer } from "./Layout";
 import { AppGrid } from "./Utils";
 import { Home, Products, Product, Checkout, AdminPanel } from "./Pages";
 import { useProducts } from "./Hooks";
-import { CartContext, ProductContext } from "./Contexts";
+import { CartContext, ProductContext, CheckoutProvider } from "./Contexts";
 // import { COLORS } from "./constants";
 
 const App = () => {
@@ -35,21 +35,26 @@ const App = () => {
       <GlobalStyle />
       <AppGrid>
         <Header />
-        <Routes>
-          <Route
-            path="/checkout/success"
-            element={
-              <>
-                <h2>Order successful!</h2>
-              </>
-            }
-          />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/products" element={<Products products={products} />} />
-          <Route path="products/:id" element={<Product />} />
-          <Route path="admin" element={<AdminPanel />} />
-          <Route path="/" element={<Home />} />
-        </Routes>
+        <CheckoutProvider>
+          <Routes>
+            <Route
+              path="/checkout/success"
+              element={
+                <>
+                  <h2>Order successful!</h2>
+                </>
+              }
+            />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route
+              path="/products"
+              element={<Products products={products} />}
+            />
+            <Route path="products/:id" element={<Product />} />
+            <Route path="admin" element={<AdminPanel />} />
+            <Route path="/" element={<Home />} />
+          </Routes>
+        </CheckoutProvider>
         <Footer />
       </AppGrid>
     </div>

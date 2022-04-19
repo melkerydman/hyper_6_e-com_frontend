@@ -2,73 +2,47 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Main } from "../../Layout";
 import { Wrapper } from "./styled";
-import { CartContext, ProductContext } from "../../Contexts/";
-import { Button, CartItems, CheckoutForm } from "../../Components";
+import { CartContext, ProductContext, CheckoutContext } from "../../Contexts/";
+import { CartItems, CheckoutForm } from "../../Components";
 import { createOrder } from "../../Services";
-import { ICartItem } from "../../Interfaces";
+import { ICartItem, ICheckoutForm } from "../../Interfaces";
 
 const Checkout: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
   const { cart, setCart } = useContext(CartContext);
   const { products } = useContext(ProductContext);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [postalCode, setPostalCode] = useState("");
-
-  // const [formData, setFormData] = useState({firstName: "", lastName: "", country: "", street: "", city: "", postalCode: "", phone: "", email: ""})
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const { formData, setFormData } = useContext(CheckoutContext);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const orderData = { firstName, lastName, postalCode };
 
     // Create new order and receive id of that order
-    const orderId = await createOrder(orderData, cart);
-    console.log("returned orderId: ", orderId);
+    try {
+      const orderId = await createOrder(formData, cart);
+      console.log("returned orderId: ", orderId);
+      // Reset cart and form and navigate to success page
+      setFormData({} as ICheckoutForm);
+      setCart({ items: [] as ICartItem[], totalQuantity: 0, totalPrice: 0 });
+      navigate("./success");
+    } catch (err) {
+      console.log(err);
+      navigate("./error");
+    }
+  };
 
-    setFirstName("");
-    setLastName("");
-    setPostalCode("");
-    setCart({ items: [] as ICartItem[], totalQuantity: 0, totalPrice: 0 });
-    navigate("./success");
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [e.target.name]: e.target.value,
+    }));
   };
   return (
     <Main>
       <Wrapper>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <input
-              type="name"
-              name="firstName"
-              id="firstName"
-              placeholder="First name"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              required
-            />
-            <input
-              type="name"
-              name="lastName"
-              id="lastName"
-              placeholder="Last name"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              required
-            />
-            <input
-              type="text"
-              name="postalCode"
-              id="postalCode"
-              placeholder="Postal Code"
-              value={postalCode}
-              onChange={(e) => setPostalCode(e.target.value)}
-              required
-            />
-          </div>
-          <div></div>
-          <Button>Place order</Button>
-        </form>
+        <CheckoutForm
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+        ></CheckoutForm>
         <CartItems cart={cart} products={products}></CartItems>
-        {/* <CheckoutForm handleSubmit={handleSubmit}></CheckoutForm> */}
       </Wrapper>
     </Main>
   );

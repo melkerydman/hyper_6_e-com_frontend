@@ -9,7 +9,7 @@ const Footer = () => {
         <HorizontalDivider top />
         <VerticalDivider center />
         <FooterContent>
-          <h3>Shooting Season</h3>
+          <h3>SHOOTING SEASON</h3>
           <div style={{ flex: "1" }}>
             <h4>Shooting Season</h4>
             <div>

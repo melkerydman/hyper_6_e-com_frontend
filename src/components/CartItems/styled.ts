@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledCartItems = styled.ul`
   /* display: grid;
   grid-template-rows: auto; */
-  gap: 1rem;
+  gap: var(--gutter);
   display: flex;
   flex-direction: column;
 
@@ -19,8 +19,11 @@ export const CartItem = styled.li`
   position: relative;
   /* padding: 1rem; */
   display: grid;
-  gap: 1rem;
+  gap: var(--gutter);
   grid-template-columns: 150px 1fr;
+  font-size: var(--paragraph);
+
+  padding-bottom: var(--gutter);
 
   button {
     background: none;
@@ -32,7 +35,7 @@ export const CartItem = styled.li`
 export const ProductInfo = styled.div`
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 1rem;
+  gap: var(--gutter);
 
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;

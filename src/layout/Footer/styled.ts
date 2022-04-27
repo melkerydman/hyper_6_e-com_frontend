@@ -20,7 +20,7 @@ export const FooterContent = styled.div`
   padding: 5rem 3rem 1rem;
 
   font-size: 10px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   letter-spacing: normal;
 
   h3 {

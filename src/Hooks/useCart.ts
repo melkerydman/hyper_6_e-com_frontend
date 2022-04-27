@@ -28,6 +28,7 @@ export const useCart = () => {
   };
 
   const getCartById = async (id: string) => {
+    console.log("id", id);
     return await fetch(`${config.API_BASE_URL}/cart/${id}`, {
       method: "GET",
       headers: { "content-type": "application/json" },

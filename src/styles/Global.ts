@@ -43,13 +43,22 @@ export default createGlobalStyle`
   --h6-letter_spacing: -7%;
   --paragraph-letter_spacing: normal;
   --span-letter_spacing: 0.22px;
+  --gutter: 16px;
 
   /* Colors */
   --color-primary: ${COLORS.primary[1]};
   --color-neutral: ${COLORS.neutral[0]};
   --color-light: #efefef;
+  --color-light: #ffffff;
   --color-grey: #c4c4c4;
   --color-dark: #171717;
+
+  /* Breakpoints */
+  --sm: 576px;
+  --md: 768px;
+  --lg:992px;
+  --xl:1200px;
+  --xxl:1400px;
 }
 
 .App {

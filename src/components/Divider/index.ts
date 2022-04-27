@@ -17,7 +17,7 @@ export const HorizontalDivider = styled.div<HorizontalType>`
   position: absolute;
 
   width: 100%;
-  height: 2px;
+  height: 1px;
   background: #171717;
   opacity: 0.2;
 `;
@@ -26,7 +26,7 @@ export const VerticalDivider = styled.div<VerticalType>`
   background: #171717;
   opacity: 0.2;
   height: 100%;
-  width: 2px;
+  width: 1px;
 
   position: absolute;
   top: 0;

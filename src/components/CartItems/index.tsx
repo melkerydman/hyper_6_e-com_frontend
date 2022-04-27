@@ -3,6 +3,7 @@ import { CartItem, ProductInfo, StyledCartItems } from "./styled";
 import { IProduct, ICart } from "../../Interfaces";
 import { Quantity, Image } from "../../Components";
 import { Link } from "react-router-dom";
+import { HorizontalDivider } from "../Divider";
 
 interface IProps {
   cart: ICart;
@@ -41,6 +42,7 @@ const CartItems: React.FC<IProps> = ({ cart, products }): JSX.Element => {
                   </button>
                 </div>
               </ProductInfo>
+              <HorizontalDivider bottom />
             </CartItem>
           );
         })

@@ -8,12 +8,18 @@ import styled from "styled-components";
 
 export const ProductHeader = styled.header`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: 250px;
 
   h2 {
     font-size: var(--h2);
+    width: 33%;
+    text-align: center;
+
+    @media (max-width: 768px) {
+      width: 50%;
+    }
   }
 `;
 

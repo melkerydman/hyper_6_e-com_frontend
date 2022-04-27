@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { CheckoutContext } from "../../Contexts";
 import { Button } from "../Button";
-import { StyledForm } from "./styled";
+import { StyledInput } from "../../Components";
+import { InputWrapper, StyledForm } from "./styled";
 
 interface IProps {
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -25,8 +26,8 @@ const CheckoutForm: React.FC<IProps> = ({
   } = formData;
   return (
     <StyledForm onSubmit={handleSubmit}>
-      <div>
-        <input
+      <InputWrapper>
+        <StyledInput
           type="name"
           name="firstName"
           id="firstName"
@@ -35,7 +36,7 @@ const CheckoutForm: React.FC<IProps> = ({
           onChange={handleChange}
           required
         />
-        <input
+        <StyledInput
           type="name"
           name="lastName"
           id="lastName"
@@ -44,7 +45,7 @@ const CheckoutForm: React.FC<IProps> = ({
           onChange={handleChange}
           required
         />
-        <input
+        <StyledInput
           type="text"
           name="country"
           id="country"
@@ -53,7 +54,7 @@ const CheckoutForm: React.FC<IProps> = ({
           onChange={handleChange}
           required
         />
-        <input
+        <StyledInput
           type="text"
           name="street"
           id="street"
@@ -62,9 +63,9 @@ const CheckoutForm: React.FC<IProps> = ({
           onChange={handleChange}
           required
         />
-      </div>
-      <div>
-        <input
+      </InputWrapper>
+      <InputWrapper>
+        <StyledInput
           type="text"
           name="city"
           id="city"
@@ -73,7 +74,7 @@ const CheckoutForm: React.FC<IProps> = ({
           onChange={handleChange}
           required
         />
-        <input
+        <StyledInput
           type="text"
           name="postalCode"
           id="postalCode"
@@ -82,7 +83,7 @@ const CheckoutForm: React.FC<IProps> = ({
           onChange={handleChange}
           required
         />
-        <input
+        <StyledInput
           type="tel"
           name="phone"
           id="phone"
@@ -91,7 +92,7 @@ const CheckoutForm: React.FC<IProps> = ({
           onChange={handleChange}
           required
         />
-        <input
+        <StyledInput
           type="email"
           name="email"
           id="email"
@@ -100,8 +101,8 @@ const CheckoutForm: React.FC<IProps> = ({
           onChange={handleChange}
           required
         />
-      </div>
-      <Button>Place order</Button>
+      </InputWrapper>
+      <Button style={{ marginTop: "1rem" }}>Place order</Button>
     </StyledForm>
   );
 };

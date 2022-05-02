@@ -13,6 +13,8 @@ import {
   Detail,
   Action,
   MoreProducts,
+  H2,
+  Text,
 } from "./styled";
 import { Quantity } from "../../Components";
 import { IProduct } from "../../Interfaces";
@@ -41,6 +43,11 @@ const Product: React.FC = (): JSX.Element => {
       return prev < product.inStock ? prev + 1 : prev;
     });
   };
+  if (product.images && product.images.length > 0) {
+    product?.images.forEach((image) => {
+      console.log(image);
+    });
+  }
 
   return product ? (
     <Main>
@@ -48,29 +55,32 @@ const Product: React.FC = (): JSX.Element => {
         <Grid>
           <ProductInfo>
             <ProductHeader>
-              <h2>{product.title}</h2>
-              {/* <h2>from {product.exhibition}</h2> */}
-              <h2>by {product.artist}</h2>
-              <div>£{product.price}</div>
+              <H2>{product.title}</H2>
+              <H2>from {product.exhibition}</H2>
+              <Text>£{product.price}</Text>
             </ProductHeader>
             <ProductDetails>
               <Detail>
-                <div>Year:</div>
-                <div>{product.year}</div>
+                <Text>Artist:</Text>
+                <Text>{product.artist}</Text>
               </Detail>
               <Detail>
-                <div>Dimensions:</div>
-                <div>{product.dimensions}</div>
+                <Text>Year:</Text>
+                <Text>{product.year}</Text>
               </Detail>
               <Detail>
-                <div>Edition:</div>
-                <div>{product.edition}</div>
+                <Text>Dimensions:</Text>
+                <Text>{product.dimensions}</Text>
               </Detail>
-              <Detail top>
-                <div>Details:</div>
-                <div>{product.details}</div>
+              <Detail paddingBottom>
+                <Text>Edition:</Text>
+                <Text>{product.edition}</Text>
               </Detail>
-              <HorizontalDivider />
+              <HorizontalDivider rel />
+              <Detail paddingTop>
+                <Text>Details:</Text>
+                <Text>{product.details}</Text>
+              </Detail>
             </ProductDetails>
             <Action>
               <Quantity
@@ -85,11 +95,9 @@ const Product: React.FC = (): JSX.Element => {
           </ProductInfo>
           <VerticalDivider center />
           <ProductImages>
-            <img src="/images/print-2/1.jpeg" alt="" />
-            <img src="/images/print-2/2.jpeg" alt="" />
-            <img src="/images/print-2/3.jpeg" alt="" />
-            <img src="/images/hunros-4.jpeg" alt="" />
-            <img src="/images/hunros-5.jpeg" alt="" />
+            {product.images
+              ? product.images.map((image) => <img src={image} alt="" />)
+              : ""}
           </ProductImages>
         </Grid>
         <HorizontalDivider />

@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 interface IDetail {
-  top?: boolean;
+  paddingTop?: boolean;
+  paddingBottom?: boolean;
 }
 
 // Product information
@@ -23,6 +24,8 @@ export const ProductHeader = styled.header`
 
 export const ProductDetails = styled.div`
   position: relative;
+  display: grid;
+  gap: 4px;
 
   h2 {
     display: grid;
@@ -39,7 +42,8 @@ export const Detail = styled.div<IDetail>`
   white-space: pre-line;
   line-height: 1;
 
-  margin-top: ${({ top }) => (top ? "1rem" : "0")};
+  padding-bottom: ${({ paddingBottom }) => (paddingBottom ? "1rem" : "0")};
+  padding-top: ${({ paddingTop }) => (paddingTop ? "1rem" : "0")};
 `;
 
 export const ProductImages = styled.div`
@@ -58,4 +62,13 @@ export const Quantity = styled.div`
 
 export const MoreProducts = styled.div`
   height: 200px;
+`;
+
+export const H2 = styled.h2`
+  letter-spacing: var(--h1-letter_spacing);
+`;
+
+export const Text = styled.div`
+  font-size: var(--p1);
+  letter-spacing: var(--p1-letter-spacing);
 `;

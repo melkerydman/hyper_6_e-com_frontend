@@ -13,7 +13,8 @@ export interface IProduct {
   title: string;
   exhibition: string;
   artist: string;
-  url: string;
+  images: [string];
+  // url: string;
   price: number;
   year: number;
   dimensions: string;

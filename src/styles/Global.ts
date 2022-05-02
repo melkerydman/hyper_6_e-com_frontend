@@ -25,23 +25,33 @@ export default createGlobalStyle`
   --h4: 20px;
   --h5: 16px;
   --h6: 12px;
-  --paragraph: 14px;
+  --p1: 18px;
+  --p2: 14px;
   --span: 12px;
   --h1-line_height: 0.8;
   --h2-line_height: 1;
   --h3-line_height: 1;
-  --h4-line_height: 1;
-  --h5-line_height: 1;
-  --h6-line_height: 1;
-  --paragraph-line_height: 1.53;
+
+    /* --font-size-h1: 47px;
+    --font-size-h2: 29px;
+    --letter-spacing-h2: -0.5px;
+    --font-size-p1: 19px;
+    --font-size-p2: 13px;
+    --line-height-p2: 1.15;
+    --extra-large: 280px;
+    --large: 210px;
+    --mediumAndSmall: 90px;
+    --medium: 70px;
+    --paddingCard: 30px;
+    --small: 20px; */
+
+  --p1-line_height: 1.53;
   --span-line_height: 1;
-  --h1-letter_spacing: -7%;
-  --h2-letter_spacing: -7%;
-  --h3-letter_spacing: -7%;
-  --h4-letter_spacing: -7%;
-  --h5-letter_spacing: -7%;
-  --h6-letter_spacing: -7%;
-  --paragraph-letter_spacing: normal;
+  --h1-letter_spacing: -2px;
+  --h2-letter_spacing: -1px;
+  --h3-letter_spacing: -.5px;
+  --p1-letter_spacing: -0.5px;
+  --p2-letter_spacing: -0.25px;
   --span-letter_spacing: 0.22px;
   --gutter: 16px;
 

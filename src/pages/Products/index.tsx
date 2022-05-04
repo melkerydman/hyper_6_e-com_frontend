@@ -4,9 +4,9 @@ import { useCart } from "../../Hooks";
 import { IProduct } from "../../Interfaces";
 import {
   ProductHeader,
+  ProductInfo,
   ProductList,
   ProductListItem,
-  ImageWrapper,
 } from "./styled";
 import { Button, Image } from "../../Components";
 import { Main } from "../../Layout";
@@ -29,13 +29,13 @@ const Products: React.FC<IProps> = ({ products }): JSX.Element => {
               <ProductListItem key={product._id}>
                 <Link to={`/products/${product._id}`}>
                   <Image product={product} url={product.images[0]} />
-                  <div>
+                  <ProductInfo>
                     <h2>{product.title}</h2>
                     <h2>by {product.artist}</h2>
-                    <p>£{product.price}</p>
-                  </div>
+                    <h2>£{product.price}</h2>
+                  </ProductInfo>
                 </Link>
-                <Button onClick={() => addToCart(product)}>Add to cart</Button>
+                {/* <Button onClick={() => addToCart(product)}>Add to cart</Button> */}
               </ProductListItem>
             ))
           : "Failed to load products"}

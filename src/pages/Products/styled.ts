@@ -38,38 +38,12 @@ export const ProductList = styled.ul`
     grid-template-columns: 1fr 1fr;
   }
 `;
-export const ProductListItem = styled.li`
+export const ProductListItem = styled.li``;
+
+export const ProductInfo = styled.div`
+  margin-top: 0.5rem;
   h2 {
     font-size: var(--h4);
-    letter-spacing: var(--h1-letter_spacing);
-  }
-  p {
-    font-size: var(--h5);
-    margin-top: 0.4rem;
-    letter-spacing: var(--h1-letter_spacing);
-  }
-`;
-
-export const ImageWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 100%;
-  padding: 1.2rem;
-  margin-bottom: 0.5rem;
-  aspect-ratio: 1 / 1;
-  background-color: var(--color-grey);
-
-  > img {
-    max-height: 100%;
-    transition: all 0.5s ease-in-out;
-    transform: scale(1);
-  }
-
-  :hover {
-    > img {
-      transform: scale(1.05);
-    }
+    letter-spacing: var(--p1-letter_spacing);
   }
 `;

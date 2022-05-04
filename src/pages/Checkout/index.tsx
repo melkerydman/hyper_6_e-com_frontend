@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Main } from "../../Layout";
 import { Wrapper } from "./styled";
@@ -12,6 +12,7 @@ const Checkout: React.FC = (): JSX.Element => {
   const { cart, setCart } = useContext(CartContext);
   const { products } = useContext(ProductContext);
   const { formData, setFormData } = useContext(CheckoutContext);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 

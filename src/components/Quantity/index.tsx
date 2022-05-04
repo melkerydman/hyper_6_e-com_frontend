@@ -1,29 +1,37 @@
-import { useCart } from "../../Hooks";
-import { ICartItem } from "../../Interfaces";
+import { ICartItem, IProduct } from "../../Interfaces";
 import { StyledQuantity, Button } from "./styled";
 
 interface IProps {
   item?: ICartItem;
   quantity?: number;
+  small?: boolean;
   handleReduceQuantity?: () => void;
   handleIncreaseQuantity?: () => void;
-  small?: boolean;
+  handleAddToCart?: (
+    item: IProduct,
+    quantity?: number | undefined
+  ) => Promise<void>;
+  handleRemoveFromCart?: (
+    id: string,
+    clear?: boolean | undefined
+  ) => Promise<void>;
 }
 
 const Quantity: React.FC<IProps> = ({
   item,
   quantity,
+  small,
   handleReduceQuantity,
   handleIncreaseQuantity,
-  small,
+  handleAddToCart,
+  handleRemoveFromCart,
 }): JSX.Element => {
-  const { addToCart, removeItemFromCart } = useCart();
-
   return item ? (
     <StyledQuantity small={small}>
       <Button
         onClick={() => {
-          removeItemFromCart(item._id);
+          if (!handleRemoveFromCart) return;
+          handleRemoveFromCart(item._id);
         }}
       >
         -
@@ -31,7 +39,8 @@ const Quantity: React.FC<IProps> = ({
       {item.quantity}
       <Button
         onClick={() => {
-          addToCart(item);
+          if (!handleAddToCart) return;
+          handleAddToCart(item);
         }}
       >
         +

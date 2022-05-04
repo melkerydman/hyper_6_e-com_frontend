@@ -1,9 +1,11 @@
-import { useCart } from "../../Hooks";
 import { CartItem, ProductInfo, StyledCartItems } from "./styled";
 import { IProduct, ICart } from "../../Interfaces";
 import { Quantity, Image } from "../../Components";
 import { Link } from "react-router-dom";
 import { HorizontalDivider } from "../Divider";
+import { addToCart, removeFromCart } from "../../Services";
+import { useContext } from "react";
+import { CartContext } from "../../Contexts";
 
 interface IProps {
   cart: ICart;
@@ -11,7 +13,17 @@ interface IProps {
 }
 
 const CartItems: React.FC<IProps> = ({ cart, products }): JSX.Element => {
-  const { removeItemFromCart } = useCart();
+  const { setCart } = useContext(CartContext);
+
+  const handleRemoveFromCart = async (id: string, clear?: boolean) => {
+    const cart = await removeFromCart(id, clear);
+    setCart(cart);
+  };
+
+  const handleAddToCart = async (item: IProduct, quantity?: number) => {
+    const cart = await addToCart(item, quantity);
+    setCart(cart);
+  };
 
   return (
     <StyledCartItems>
@@ -31,11 +43,16 @@ const CartItems: React.FC<IProps> = ({ cart, products }): JSX.Element => {
                     <p>{product ? product.title : "Unknown"}</p>
                     <p>{product ? product.artist : "Unknown"}</p>
                   </Link>
-                  <Quantity item={item} small></Quantity>
+                  <Quantity
+                    handleAddToCart={handleAddToCart}
+                    handleRemoveFromCart={handleRemoveFromCart}
+                    item={item}
+                    small
+                  ></Quantity>
                 </div>
                 <div>
                   <p>£{product ? product.price : "Unknown"}</p>
-                  <button onClick={() => removeItemFromCart(item._id, true)}>
+                  <button onClick={() => handleRemoveFromCart(item._id, true)}>
                     Remove
                   </button>
                 </div>

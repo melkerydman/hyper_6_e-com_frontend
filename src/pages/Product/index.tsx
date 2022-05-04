@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useCart, useProducts } from "../../Hooks";
+import { useProducts } from "../../Hooks";
 
 import {
   VerticalDivider,
@@ -22,10 +22,12 @@ import {
 } from "./styled";
 import { Quantity } from "../../Components";
 import { IProduct } from "../../Interfaces";
-import { calculateNewValue } from "@testing-library/user-event/dist/utils";
+import { addToCart } from "../../Services";
+import { CartContext } from "../../Contexts";
 
 const Product: React.FC = (): JSX.Element => {
-  const { addToCart } = useCart();
+  const { setCart } = useContext(CartContext);
+
   const { getProductById } = useProducts();
   const params = useParams();
   const [product, setProduct] = useState<IProduct>({} as IProduct);
@@ -47,6 +49,13 @@ const Product: React.FC = (): JSX.Element => {
     setQuantity((prev) => {
       return prev < product.inStock ? prev + 1 : prev;
     });
+  };
+
+  const handleAddToCart = async () => {
+    const cart = await addToCart(product, quantity);
+    console.log("cart from handleAddToCart:", cart);
+
+    setCart(cart);
   };
 
   return product ? (
@@ -95,9 +104,8 @@ const Product: React.FC = (): JSX.Element => {
                 handleReduceQuantity={handleReduceQuantity}
                 handleIncreaseQuantity={handleIncreaseQuantity}
               />
-              <Button onClick={() => addToCart(product, quantity)}>
-                Add to cart
-              </Button>
+              {/* <Button onClick={() => addToCart(product, quantity)}> */}
+              <Button onClick={handleAddToCart}>Add to cart</Button>
             </Action>
           </ProductInfo>
           <VerticalDivider center />

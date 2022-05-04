@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { ICart, ICartItem } from "../Interfaces";
 
 const CartContext = createContext<IState>({} as IState);
@@ -19,6 +19,12 @@ export const CartProvider = ({ children }: any) => {
       ? cartFromLocalStorage
       : { items: [] as ICartItem[], totalQuantity: 0, totalPrice: 0 }
   );
+  // if theres is a cart with _id
+  // const [cart, setCart] = useState<ICart>(
+  //   cartFromLocalStorage._id
+  //     ? cartFromLocalStorage
+  //     : { items: [] as ICartItem[], totalQuantity: 0, totalPrice: 0 }
+  // );
 
   return (
     <CartContext.Provider

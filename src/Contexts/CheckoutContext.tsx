@@ -9,7 +9,16 @@ interface IState {
 }
 
 export const CheckoutProvider = ({ children }: any) => {
-  const [formData, setFormData] = useState<ICheckoutForm>({} as ICheckoutForm);
+  const [formData, setFormData] = useState<ICheckoutForm>({
+    firstName: "",
+    lastName: "",
+    country: "",
+    street: "",
+    city: "",
+    postalCode: "",
+    phone: "",
+    email: "",
+  });
 
   return (
     <CheckoutContext.Provider value={{ formData, setFormData }}>

@@ -22,7 +22,6 @@ const Cart: React.FC<IProps> = ({ handleOpenCart }): JSX.Element => {
   const { products } = useContext(ProductContext);
 
   return openCart ? (
-    // <CartWrapper isShowing={openCart}>
     <CartWrapper
       isShowing={openCart}
       onClick={(e) => {
@@ -43,7 +42,8 @@ const Cart: React.FC<IProps> = ({ handleOpenCart }): JSX.Element => {
           >
             Close
           </MenuButton>
-          <HorizontalDivider bottom />
+          {/* Uncomment to use horizontal divider */}
+          {/* <HorizontalDivider bottom /> */}
         </CartHeader>
         {cart.items.length > 0 ? (
           <>

@@ -21,7 +21,7 @@ const App = () => {
       setProducts(products);
       console.log("page reloaded");
     })();
-  }, [getAllProducts, setProducts]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));

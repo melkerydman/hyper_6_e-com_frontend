@@ -19,7 +19,7 @@ export interface IProduct {
   year: number;
   dimensions: string;
   edition: string;
-  details: string;
+  details: [string];
   inStock: number;
 }
 export interface IOrder {

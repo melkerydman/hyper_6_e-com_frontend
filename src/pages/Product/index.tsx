@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useCart, useProducts } from "../../Hooks";
 
-import { VerticalDivider, HorizontalDivider, Button } from "../../Components";
+import {
+  VerticalDivider,
+  HorizontalDivider,
+  Button,
+  Image,
+} from "../../Components";
 import { Main } from "../../Layout";
 import { Grid, Wrapper } from "../../Utils";
 import {
@@ -43,11 +48,6 @@ const Product: React.FC = (): JSX.Element => {
       return prev < product.inStock ? prev + 1 : prev;
     });
   };
-  if (product.images && product.images.length > 0) {
-    product?.images.forEach((image) => {
-      console.log(image);
-    });
-  }
 
   return product ? (
     <Main>
@@ -76,10 +76,17 @@ const Product: React.FC = (): JSX.Element => {
                 <Text>Edition:</Text>
                 <Text>{product.edition}</Text>
               </Detail>
-              <HorizontalDivider rel />
+              <HorizontalDivider position="relative" />
               <Detail paddingTop>
                 <Text>Details:</Text>
-                <Text>{product.details}</Text>
+                <Text>
+                  {" "}
+                  {product.details
+                    ? product.details.map((detail, index) => (
+                        <p key={index}>{detail}</p>
+                      ))
+                    : ""}
+                </Text>
               </Detail>
             </ProductDetails>
             <Action>
@@ -96,13 +103,17 @@ const Product: React.FC = (): JSX.Element => {
           <VerticalDivider center />
           <ProductImages>
             {product.images
-              ? product.images.map((image) => <img src={image} alt="" />)
+              ? product.images.map((image, index) => (
+                  // <p>test{index}</p>
+                  <Image key={index} product={product} url={image} />
+                  // <img key={index} src={image} alt="" />
+                ))
               : ""}
           </ProductImages>
         </Grid>
-        <HorizontalDivider />
+        {/* <HorizontalDivider /> */}
       </Wrapper>
-      <MoreProducts>More products</MoreProducts>
+      {/* <MoreProducts>More products</MoreProducts> */}
     </Main>
   ) : (
     <>Loading</>

@@ -9,9 +9,9 @@ const Footer = () => {
         <HorizontalDivider top />
         <VerticalDivider center />
         <FooterContent>
-          <h3>SHOOTING SEASON</h3>
+          <h3>HYPER_6</h3>
           <div style={{ flex: "1" }}>
-            <h4>Shooting Season</h4>
+            <h4>Hyper_6</h4>
             <div>
               <Link to="/products" style={{ textIndent: "0" }}>
                 Prints

@@ -3,7 +3,7 @@ import styled from "styled-components";
 type HorizontalType = {
   top?: boolean;
   bottom?: boolean;
-  rel?: boolean;
+  position?: string;
 };
 type VerticalType = {
   left?: boolean;
@@ -15,7 +15,7 @@ export const HorizontalDivider = styled.div<HorizontalType>`
   left: 0;
   bottom: ${({ bottom }) => (bottom ? "0" : "")};
   top: ${({ top }) => (top ? "0" : "")};
-  position: ${({ rel }) => (rel ? "relative" : "absolute")};
+  position: ${({ position }) => (position ? position : "absolute")};
 
   width: 100%;
   height: 1px;

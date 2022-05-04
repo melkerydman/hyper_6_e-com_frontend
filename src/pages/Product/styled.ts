@@ -49,6 +49,11 @@ export const Detail = styled.div<IDetail>`
 export const ProductImages = styled.div`
   max-height: 65vh;
   overflow: scroll;
+  padding: 1.5rem;
+
+  div:not(:last-child) {
+    margin-bottom: 1rem;
+  }
 `;
 
 export const Action = styled.div`

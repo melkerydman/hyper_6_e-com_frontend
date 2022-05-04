@@ -21,7 +21,16 @@ const Checkout: React.FC = (): JSX.Element => {
       const orderId = await createOrder(formData, cart);
       console.log("returned orderId: ", orderId);
       // Reset cart and form and navigate to success page
-      setFormData({} as ICheckoutForm);
+      setFormData({
+        firstName: "",
+        lastName: "",
+        country: "",
+        street: "",
+        city: "",
+        postalCode: "",
+        phone: "",
+        email: "",
+      });
       setCart({ items: [] as ICartItem[], totalQuantity: 0, totalPrice: 0 });
       navigate("./success");
     } catch (err) {

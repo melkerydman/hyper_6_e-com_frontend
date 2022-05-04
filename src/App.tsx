@@ -21,7 +21,7 @@ const App = () => {
       setProducts(products);
       console.log("page reloaded");
     })();
-  }, []);
+  }, [getAllProducts, setProducts]);
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));

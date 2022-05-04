@@ -17,12 +17,12 @@ import {
   ProductDetails,
   Detail,
   Action,
-  MoreProducts,
   H2,
   Text,
 } from "./styled";
 import { Quantity } from "../../Components";
 import { IProduct } from "../../Interfaces";
+import { calculateNewValue } from "@testing-library/user-event/dist/utils";
 
 const Product: React.FC = (): JSX.Element => {
   const { addToCart } = useCart();
@@ -52,7 +52,7 @@ const Product: React.FC = (): JSX.Element => {
   return product ? (
     <Main>
       <Wrapper>
-        <Grid>
+        <Grid style={{ height: `calc(100vh - var(--header))` }}>
           <ProductInfo>
             <ProductHeader>
               <H2>{product.title}</H2>
@@ -104,16 +104,12 @@ const Product: React.FC = (): JSX.Element => {
           <ProductImages>
             {product.images
               ? product.images.map((image, index) => (
-                  // <p>test{index}</p>
                   <Image key={index} product={product} url={image} />
-                  // <img key={index} src={image} alt="" />
                 ))
               : ""}
           </ProductImages>
         </Grid>
-        {/* <HorizontalDivider /> */}
       </Wrapper>
-      {/* <MoreProducts>More products</MoreProducts> */}
     </Main>
   ) : (
     <>Loading</>

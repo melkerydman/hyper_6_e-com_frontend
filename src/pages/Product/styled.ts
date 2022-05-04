@@ -47,7 +47,6 @@ export const Detail = styled.div<IDetail>`
 `;
 
 export const ProductImages = styled.div`
-  max-height: 65vh;
   overflow: scroll;
   padding: 1.5rem;
 
@@ -63,10 +62,6 @@ export const Action = styled.div`
 `;
 export const Quantity = styled.div`
   display: flex;
-`;
-
-export const MoreProducts = styled.div`
-  height: 200px;
 `;
 
 export const H2 = styled.h2`

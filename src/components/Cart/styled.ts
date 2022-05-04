@@ -48,7 +48,10 @@ export const StyledCart = styled.div`
 export const CartHeader = styled.header`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   position: relative;
+
+  height: var(--header);
 
   padding-left: 1.5rem;
   padding-right: 1.5rem;

@@ -11,6 +11,10 @@ export const Header = styled.header`
   top: 0;
   z-index: 1;
 
+  height: var(--header);
+  display: flex;
+  align-items: center;
+
   width: 100%;
   background: var(--color-light);
 

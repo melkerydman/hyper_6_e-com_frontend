@@ -8,7 +8,7 @@ import {
   SubTotal,
 } from "./styled";
 
-import { VerticalDivider, HorizontalDivider, Button } from "../../Components";
+import { VerticalDivider, Button } from "../../Components";
 import { CartContext, ProductContext } from "../../Contexts";
 import CartItems from "../CartItems";
 import { Link } from "react-router-dom";

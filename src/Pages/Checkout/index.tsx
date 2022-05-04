@@ -5,7 +5,7 @@ import { Wrapper } from "./styled";
 import { CartContext, ProductContext, CheckoutContext } from "../../Contexts/";
 import { CartItems, CheckoutForm } from "../../Components";
 import { createOrder } from "../../Services";
-import { ICartItem, ICheckoutForm } from "../../Interfaces";
+import { ICartItem } from "../../Interfaces";
 
 const Checkout: React.FC = (): JSX.Element => {
   const navigate = useNavigate();

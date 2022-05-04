@@ -11,9 +11,7 @@ interface IProps {
 }
 
 const CartItems: React.FC<IProps> = ({ cart, products }): JSX.Element => {
-  // const { cart } = useContext(CartContext);
-  const { addToCart, removeItemFromCart } = useCart();
-  // const { products } = useContext(ProductContext);
+  const { removeItemFromCart } = useCart();
 
   return (
     <StyledCartItems>
@@ -25,7 +23,7 @@ const CartItems: React.FC<IProps> = ({ cart, products }): JSX.Element => {
           return (
             <CartItem key={item._id}>
               <Link to={`/products/${product._id}`}>
-                <Image product={product} index={index} />
+                <Image product={product} url={product.images[0]} />
               </Link>
               <ProductInfo>
                 <div>

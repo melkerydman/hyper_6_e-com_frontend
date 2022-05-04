@@ -21,7 +21,7 @@ const Header: React.FC = (): JSX.Element => {
   return (
     <StyledHeader>
       <Nav>
-        <Logo to={"/"}>Shooting Season</Logo>
+        <Logo to={"/"}>Hyper_6</Logo>
         <Menu>
           <MenuItem>
             <MenuLink to={"/products"}>Prints</MenuLink>

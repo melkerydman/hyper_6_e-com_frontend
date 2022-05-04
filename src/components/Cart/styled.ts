@@ -27,6 +27,10 @@ export const CartWrapper = styled.section<CartType>`
   animation-duration: 0.5s;
   animation-timing-function: ease-in;
   animation-fill-mode: forwards;
+
+  @media screen and (max-width: 992px) {
+    grid-template-areas: ". cart";
+  }
 `;
 export const StyledCart = styled.div`
   height: 100%;
@@ -40,8 +44,6 @@ export const StyledCart = styled.div`
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
   position: relative;
-  height: 100vh;
-
   overflow: scroll;
 `;
 

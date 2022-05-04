@@ -9,7 +9,7 @@ export const ImageWrapper = styled.div`
   padding: 1.2rem;
   /* margin-bottom: 0.5rem; */
   aspect-ratio: 1 / 1;
-  background-color: var(--color-grey);
+  background-color: var(--color-light-second);
 
   > img {
     max-height: 100%;

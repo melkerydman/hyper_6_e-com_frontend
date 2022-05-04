@@ -61,8 +61,8 @@ export default createGlobalStyle`
   /* Colors */
   --color-primary: ${COLORS.primary[1]};
   --color-neutral: ${COLORS.neutral[0]};
-  --color-light: #efefef;
   --color-light: #ffffff;
+  --color-light-second: #efefef;
   --color-grey: #c4c4c4;
   --color-dark: #171717;
 

@@ -6,3 +6,6 @@ export { default as CartItems } from "./CartItems";
 export { default as CheckoutForm } from "./CheckoutForm";
 export { default as Image } from "./Image";
 export { default as StyledInput } from "./StyledInput";
+export { default as Header } from "./Header";
+export { default as Footer } from "./Footer";
+export { default as Main } from "./Main";

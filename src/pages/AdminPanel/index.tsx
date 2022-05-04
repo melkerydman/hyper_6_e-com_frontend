@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { IOrder } from "../../Interfaces";
-import { Main } from "../../Layout";
+import { Main } from "../../Components";
 import { getAllOrders } from "../../Services/OrderServices";
-import { Wrapper } from "../../Utils";
+import { Wrapper } from "../../Components/Utility";
 
 const AdminPanel: React.FC = () => {
   const [orders, setOrders] = useState<IOrder[]>([] as IOrder[]);

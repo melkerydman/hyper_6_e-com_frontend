@@ -8,8 +8,8 @@ import {
   Button,
   Image,
 } from "../../Components";
-import { Main } from "../../Layout";
-import { Grid, Wrapper } from "../../Utils";
+import { Main } from "../../Components";
+import { Grid, Wrapper } from "../../Components/Utility";
 import {
   ProductInfo,
   ProductImages,
@@ -38,7 +38,7 @@ const Product: React.FC = (): JSX.Element => {
     getProductById(params.id)
       .then((product) => setProduct(product))
       .catch((err) => console.error(err.message));
-  }, [params.id]);
+  }, [params.id, getProductById]);
 
   const handleReduceQuantity = () => {
     if (quantity > 1) {

@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import { useCart } from "../../Hooks";
-
 import { IProduct } from "../../Interfaces";
 import {
   ProductHeader,
@@ -8,16 +6,13 @@ import {
   ProductList,
   ProductListItem,
 } from "./styled";
-import { Button, Image } from "../../Components";
-import { Main } from "../../Layout";
+import { Image, Main } from "../../Components";
 
 interface IProps {
   products: IProduct[] | undefined;
 }
 
 const Products: React.FC<IProps> = ({ products }): JSX.Element => {
-  const { addToCart } = useCart();
-
   return (
     <Main>
       <ProductHeader>
@@ -35,7 +30,6 @@ const Products: React.FC<IProps> = ({ products }): JSX.Element => {
                     <h2>£{product.price}</h2>
                   </ProductInfo>
                 </Link>
-                {/* <Button onClick={() => addToCart(product)}>Add to cart</Button> */}
               </ProductListItem>
             ))
           : "Failed to load products"}

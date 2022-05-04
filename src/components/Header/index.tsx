@@ -8,7 +8,7 @@ import {
   MenuLink,
   CheckoutButton,
 } from "./styled";
-import { HorizontalDivider, Cart } from "../../Components";
+import { HorizontalDivider, Cart } from "..";
 import { CartContext } from "../../Contexts";
 
 const Header: React.FC = (): JSX.Element => {

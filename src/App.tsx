@@ -2,9 +2,9 @@ import { useEffect, useContext } from "react";
 import { Route, Routes } from "react-router-dom";
 
 // import { ThemeProvider } from "styled-components";
-import GlobalStyle from "./Styles/Global";
-import { Header, Footer } from "./Layout";
-import { AppGrid } from "./Utils";
+import GlobalStyle from "./Global";
+import { Header, Footer } from "./Components";
+import { AppGrid } from "./Components/Utility";
 import { Home, Products, Product, Checkout, AdminPanel } from "./Pages";
 import { useProducts } from "./Hooks";
 import { CartContext, ProductContext, CheckoutProvider } from "./Contexts";

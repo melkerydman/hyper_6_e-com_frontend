@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Main } from "../../Layout";
+import { Main } from "../../Components";
 import { Wrapper } from "./styled";
 import { CartContext, ProductContext, CheckoutContext } from "../../Contexts/";
 import { CartItems, CheckoutForm } from "../../Components";

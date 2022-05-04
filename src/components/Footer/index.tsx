@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { VerticalDivider, HorizontalDivider } from "../../Components";
+import { VerticalDivider, HorizontalDivider } from "..";
 import { Footer as StyledFooter, FooterContent } from "./styled";
 
 const Footer = () => {

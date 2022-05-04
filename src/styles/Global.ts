@@ -55,6 +55,9 @@ export default createGlobalStyle`
   --span-letter_spacing: 0.22px;
   --gutter: 16px;
 
+  /* Header */
+  --header: 75px;
+
   /* Colors */
   --color-primary: ${COLORS.primary[1]};
   --color-neutral: ${COLORS.neutral[0]};

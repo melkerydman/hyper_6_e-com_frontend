@@ -38,7 +38,7 @@ const Product: React.FC = (): JSX.Element => {
     getProductById(params.id)
       .then((product) => setProduct(product))
       .catch((err) => console.error(err.message));
-  }, [params.id]);
+  }, [params.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleReduceQuantity = () => {
     if (quantity > 1) {

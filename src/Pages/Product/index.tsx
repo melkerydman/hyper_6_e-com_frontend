@@ -38,7 +38,7 @@ const Product: React.FC = (): JSX.Element => {
     getProductById(params.id)
       .then((product) => setProduct(product))
       .catch((err) => console.error(err.message));
-  }, [params.id, getProductById]);
+  }, [params.id]);
 
   const handleReduceQuantity = () => {
     if (quantity > 1) {

@@ -1,46 +1,47 @@
-# Getting Started with Create React App
+# hyper_6_e-com_frontend
+The brief for module 6 at Hyper Island - Data Interaction. My first time building a MERN app. Backend repo can be at https://github.com/melkerydman/hyper_6_e-com_backend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### :briefcase: Brief
+Create an e-commerce, with front- and backend. User should be able to browse products, create a cart and create an order. Admin should be able to update order status.
 
-## Available Scripts
+### :mantelpiece_clock: Time frame
+5 weeks.
 
-In the project directory, you can run:
+### :dart: Goals:
+I wanted to
+- get a better understanding of backend and how it works in conjunction with frontend.
+- improve understanding and knowledge in React.
+- try out TypeScript
 
-### `npm start`
+### :computer: Tech and Tools
+- MongoDB
+- Express
+- React
+- Node
+- TypeScript
+- Styled-components
+- Git and GitHub
+- Trello
+- Figma
+- Netlify
+- Heroku
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### :fountain: Learnings and challenges
+A lot of React learnings, useContext for global state and started creating my own hooks to name two.
+A lot of troubleshooting and time spent understanding TypeScript - this was probably the most time consuming part. Interfaces.
+General struggles with setting up database and creating functionality for Some struggles getting a grasp of working with MongoDB, and writing functionality for working with data.
+I continuously improve my knowledge in architecture, in order to create more maintainable code. This is, and has been, one of my main priorities, since it helps me make sense of how to structure and plan an application.
+Becoming better at using Trello to keep track on and manage tasks.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### :construction: Improvements and bug fixes
+Styling and adding functionality to admin/order page. Currently just showing the orders.
+Filter function on products page.
+Overall clean-up of design.
+Manually putting in URL, e.g. “[https://hyper-6-ecom.netlify.app/products](https://hyper-6-ecom.netlify.app/products)” breaks page.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### :flying_saucer: Take-aways for the future
+I want and need to start writing tests for my code. 
+I must become better at writing comments and documenting what I do. This project was a fall forward but there’s a lot of improvements to make.
+CI/CD.
+Started creating a design system in Figma I will benefit from using down the line.
+Using Trello for task management is a super power.

@@ -13,6 +13,7 @@ export const ProductInfo = styled.div`
 
   padding: 1.5rem;
   padding-right: 140px;
+  overflow: scroll;
 `;
 
 export const ProductHeader = styled.header`

@@ -38,6 +38,7 @@ export const Nav = styled.nav`
 
 export const Logo = styled(Link)`
   font-size: var(--h3);
+  font-family: Kolligio;
   font-family: Kaensla;
   text-transform: uppercase;
   color: #000;

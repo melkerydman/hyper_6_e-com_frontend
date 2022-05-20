@@ -1,23 +1,14 @@
 import { createGlobalStyle } from "styled-components";
 import { COLORS } from "./constants";
-
+import Kaensla from "./Fonts/Kaensla-Regular.otf";
 export default createGlobalStyle`
+@font-face {
+    font-family: 'Kaensla';
+    src: url(${Kaensla}) format('opentype'),
+}
 
-/* @font-face {
-  font-family: Kaensla;
-  src: url(/Users/melkerrydman/Library/Fonts/Kaensla-Regular.otf);
-}
-@font-face {
-  font-family: Kolligio;
-  src: url(/Users/melkerrydman/Library/Fonts/Kolligio.otf);
-}
-@font-face {
-  font-family: "Blue Ocean";
-  src: url("/Users/melkerrydman/Library/Fonts/BLUE OCEAN ITALIC.otf");
-} */
 :root {
-  /* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
-  font-family: 'Inter', sans-serif; */
+  font-family: 'Inter', sans-serif;
 
   --h1: 44px;
   --h2: 32px;

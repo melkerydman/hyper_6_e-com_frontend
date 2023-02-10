@@ -52,7 +52,7 @@ const App = () => {
             />
             <Route path="products/:id" element={<Product />} />
             <Route path="admin" element={<AdminPanel />} />
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home products={products} />} />
           </Routes>
         </CheckoutProvider>
         <Footer />

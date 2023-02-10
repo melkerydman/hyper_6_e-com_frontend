@@ -24,7 +24,7 @@ const Home: React.FC<IProps> = ({ products }: any): JSX.Element => {
         <Hero>
           <H1>Explore the prints</H1>
           {randomProduct && (
-            <Link to={`/products/${randomProduct._id}`}>
+            <Link to={`/products}`}>
               <HeroImage>
                 <img
                   src={randomProduct.images[0]}
